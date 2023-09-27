@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../../styles.dart/stylekit.dart';
 
 class CustomButton extends StatefulWidget {
-  const CustomButton( {
+  const CustomButton({
     super.key,
     required this.text,
     this.onTap,
@@ -43,9 +43,9 @@ class _CustomButtonState extends State<CustomButton> {
                   )
                 : null,
             borderRadius: BorderRadius.circular(4.0),
-            border: !widget.isPrimary
-                ? Border.all(color: $styles.colors.lavenderBlue)
-                : null,
+            // border: !widget.isPrimary
+            //     ? Border.all(color: $styles.colors.lavenderBlue)
+            //     : null,
             color: widget.isDisabled ? Colors.grey : null,
           ),
           child: InkWell(
@@ -60,16 +60,16 @@ class _CustomButtonState extends State<CustomButton> {
                   ? Padding(
                       padding: const EdgeInsets.symmetric(vertical: 6.0),
                       child: CircularProgressIndicator(
-                        color: $styles.colors.white,
-                        backgroundColor: $styles.colors.black,
+                        // color: $styles.colors.white,
+                        backgroundColor: $styles.colors.tertiary900,
                       ),
                     )
                   : Text(
                       widget.text,
                       // style: widget.textStyle ?? $styles.text.buttonBold,
-                      style: widget.isPrimary
-                          ? $styles.text.lato17_500white
-                          : $styles.text.lato17_500violet,
+                      // style: widget.isPrimary
+                      // ? $styles.text.lato17_500white
+                      // : $styles.text.lato17_500violet,
                     ),
             ),
           ),

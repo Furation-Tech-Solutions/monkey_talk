@@ -62,7 +62,7 @@ class CustomTFF extends StatelessWidget {
           isDense: true,
           floatingLabelAlignment: FloatingLabelAlignment.start,
           hintText: hint,
-          hintStyle: hintstyle ?? $styles.text.lato12_400Grey6,
+          // hintStyle: hintstyle ?? $styles.text.lato12_400Grey6,
           labelText: label,
           enabledBorder: OutlineInputBorder(
             borderRadius: BorderRadius.circular(6),
