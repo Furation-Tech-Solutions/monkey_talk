@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -27,7 +29,33 @@ class LoginScreen extends StatelessWidget {
               style: $styles.text.lato14_400,
             ),
             SizedBoxHeight20,
-            
+            SizedBox(
+                height: 50,
+                child: CustomTFF(
+                  hint: "Enter your Email id",
+                )),
+            SizedBoxHeight10,
+            SizedBox(
+                height: 50,
+                child: CustomTFF(
+                  hint: "Password",
+                  suffixIcon: Icon(Icons.remove_red_eye_rounded),
+                )),
+            SizedBoxHeight10,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                RichText(
+                    text: TextSpan(
+                        text: "Forgot Password?",
+                        style: $styles.text.lato14_600))
+              ],
+            ),
+            SizedBoxHeight10,
+            CustomButton(
+              text: "Login",
+              textStyle: $styles.text.poppins14_500White,
+            )
           ],
         ),
       ),

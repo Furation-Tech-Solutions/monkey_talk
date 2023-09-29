@@ -13,6 +13,13 @@ class AppColors {
   // );
 
   final Color tertiary200 = const Color(0xFFD9D9D9);
-  final Color tertiary900 = const Color(0xFF000000);
   final Color tertiary400 = const Color(0xFF9D9D9D);
+  final Color tertiary600 = const Color(0xFF555555);
+  final Color tertiary900 = const Color(0xFF000000);
+
+  // White
+  final Color white = const Color(0xFFFFFFFF);
+
+  //Primary/200
+  final Color primary200 = const Color(0xFFF17E5B);
 }
