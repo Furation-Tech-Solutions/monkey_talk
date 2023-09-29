@@ -1,3 +1,4 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
@@ -55,7 +56,54 @@ class LoginScreen extends StatelessWidget {
             CustomButton(
               text: "Login",
               textStyle: $styles.text.poppins14_500White,
-            )
+            ),
+            SizedBoxHeight40,
+            Row(
+              children: [
+                Expanded(
+                    child: Divider(
+                  color: $styles.colors.grey,
+                )),
+                SizedBoxWidth10,
+                Text('Or', style: $styles.text.lato14_400grey5),
+                SizedBoxWidth10,
+                Expanded(
+                    child: Divider(
+                  color: $styles.colors.grey,
+                )),
+              ],
+            ),
+            SizedBoxHeight40,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 24,
+                  backgroundColor: $styles.colors.tertiary900,
+                  child: SvgPicture.asset('assets/images/google.svg'),
+                ),
+                SizedBoxWidth10,
+                CircleAvatar(
+                  radius: 24,
+                  backgroundColor: $styles.colors.tertiary900,
+                  child: SvgPicture.asset('assets/images/apple.svg'),
+                ),
+              ],
+            ),
+            Expanded(child: SizedBox()),
+            Center(
+              child: RichText(
+                text: TextSpan(text: "Don't have an account? ", children: [
+                  TextSpan(
+                      text: "Sign up",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          // Navigate To Register Screen
+                        })
+                ]),
+              ),
+            ),
+            SizedBoxHeight15,
           ],
         ),
       ),

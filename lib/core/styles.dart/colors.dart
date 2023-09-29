@@ -20,6 +20,13 @@ class AppColors {
   // White
   final Color white = const Color(0xFFFFFFFF);
 
+  //Black
+  final Color black = const Color(0xFF000000);
+
+  //Grey
+  final Color grey = const Color(0xFFDBDBDB);
+  final Color grey5 = const Color(0xFF6F6F6F);
+
   //Primary/200
   final Color primary200 = const Color(0xFFF17E5B);
 }
