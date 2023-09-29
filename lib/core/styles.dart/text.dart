@@ -7,23 +7,28 @@ class Texts {
   Texts(this._scale);
   final double _scale;
 
+  final TextStyle lato = GoogleFonts.lato();
   final TextStyle poppins = GoogleFonts.poppins();
   // final TextStyle inter = GoogleFonts.inter();
 
-  late final TextStyle lato20_500 = _createFont(poppins,
+  late final TextStyle poppins20_500tertiary900 = _createFont(poppins,
       sizePx: 20, weight: FontWeight.w500, color: $styles.colors.tertiary900);
 
-  late final TextStyle lato14_400 = _createFont(poppins,
+  late final TextStyle poppins14_400tertiary400 = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w400, color: $styles.colors.tertiary400);
 
-  late final TextStyle lato14_600 = _createFont(poppins,
+  late final TextStyle poppins14_600tertiary600 = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w600, color: $styles.colors.tertiary600);
 
-// POPPINS
-  late final TextStyle poppins14_400 = _createFont(poppins,
+  late final TextStyle poppins14_400tertiary900 = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w400, color: $styles.colors.tertiary900);
-  late final TextStyle poppins14_500White = _createFont(poppins,
+
+  late final TextStyle poppins14_500white = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w500, color: $styles.colors.white);
+
+  //lato
+  late final TextStyle lato14_400tertiary600 = _createFont(lato,
+      sizePx: 14, weight: FontWeight.w400, color: $styles.colors.tertiary600);
 
   // late final TextStyle lato12_400Grey6 = _createFont(
   //   lato,
