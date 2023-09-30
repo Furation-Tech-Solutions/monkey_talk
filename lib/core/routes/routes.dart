@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:monkey_talk/presentation/auth/screens/create_password.dart';
 import 'package:monkey_talk/presentation/auth/screens/forgot_password.dart';
+import 'package:monkey_talk/presentation/auth/screens/register_screen.dart';
 
 import '../../presentation/auth/screens/login_screen.dart';
 
@@ -17,6 +18,7 @@ class RouteStrings {
   static const login = '/login';
   static const forgotPassword = '/forgot_Password';
   static const createPassword = '/create_Password';
+  static const register = '/register';
 
   // static const reservation = '/reservation';
 
@@ -103,8 +105,7 @@ final router = GoRouter(
     // ),
     GoRoute(
       path: RouteStrings.login,
-      builder: (BuildContext context, GoRouterState state) =>
-          const LoginScreen(),
+      builder: (BuildContext context, GoRouterState state) => LoginScreen(),
     ),
     GoRoute(
       path: RouteStrings.forgotPassword,
@@ -115,6 +116,11 @@ final router = GoRouter(
       path: RouteStrings.createPassword,
       builder: (BuildContext context, GoRouterState state) =>
           const CreatePasswordScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.register,
+      builder: (BuildContext context, GoRouterState state) =>
+          const RegisterScreen(),
     ),
     // GoRoute(
     //     path: RouteStrings.guestList,
