@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
+
+import '../blocs/login/login_cubit.dart';
+import '../blocs/login/login_state.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -53,10 +57,28 @@ class LoginScreen extends StatelessWidget {
               ],
             ),
             SizedBoxHeight10,
-            CustomButton(
-              text: "Login",
-              textStyle: $styles.text.poppins14_500white,
-            )
+            BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
+              return Column(
+                children: [
+                  CustomButton(
+                    isLoading: state.isLoading,
+                    text: "Login",
+                    textStyle: $styles.text.poppins14_500white,
+                    onTap: () {
+                      context.read<LoginCubit>().login();
+                    },
+                  ),
+                  SizedBoxHeight10,
+                  state.errorMessage.isNotEmpty
+                      ? Text(
+                          state.errorMessage,
+                          style: const TextStyle(color: Colors.black),
+                        )
+                      : Container(),
+                  SizedBoxHeight10,
+                ],
+              );
+            })
           ],
         ),
       ),
