@@ -1,13 +1,14 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:monkey_talk/core/routes/routes.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 
 class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+  LoginScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +50,10 @@ class LoginScreen extends StatelessWidget {
                 RichText(
                     text: TextSpan(
                   text: "Forgot Password?",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      router.go(RouteStrings.forgotPassword);
+                    },
                   style: $styles.text.lato14_400tertiary600,
                 ))
               ],
@@ -100,6 +105,7 @@ class LoginScreen extends StatelessWidget {
                       recognizer: TapGestureRecognizer()
                         ..onTap = () {
                           // Navigate To Register Screen
+                          router.go(RouteStrings.register);
                         })
                 ]),
               ),
