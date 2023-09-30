@@ -13,6 +13,14 @@ import '../blocs/login/login_state.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
+import 'package:monkey_talk/core/routes/routes.dart';
+import 'package:monkey_talk/core/styles.dart/stylekit.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
+import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
+
+class LoginScreen extends StatelessWidget {
+  LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -95,75 +103,67 @@ class LoginPage extends StatelessWidget {
                 RichText(
                     text: TextSpan(
                   text: "Forgot Password?",
+                  recognizer: TapGestureRecognizer()
+                    ..onTap = () {
+                      router.go(RouteStrings.forgotPassword);
+                    },
                   style: $styles.text.lato14_400tertiary600,
                 ))
               ],
             ),
             SizedBoxHeight10,
-            BlocBuilder<LoginCubit, LoginState>(builder: (context, state) {
-              return Column(
-                children: [
-                  CustomButton(
-                    text: "Login",
-                    textStyle: $styles.text.poppins14_500white,
-                  ),
-                  SizedBoxHeight10,
-                  state.errorMessage.isNotEmpty
-                      ? Text(
-                          state.errorMessage,
-                          style: const TextStyle(color: Colors.black),
-                        )
-                      : Container(),
-                  SizedBoxHeight10,
-                ],
-              );
-            }),
-            // SizedBoxHeight40,
-            // Row(
-            //   children: [
-            //     Expanded(
-            //         child: Divider(
-            //       color: $styles.colors.grey,
-            //     )),
-            //     SizedBoxWidth10,
-            //     Text('Or', style: $styles.text.lato14_400grey5),
-            //     SizedBoxWidth10,
-            //     Expanded(
-            //         child: Divider(
-            //       color: $styles.colors.grey,
-            //     )),
-            //   ],
-            // ),
-            // SizedBoxHeight40,
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.center,
-            //   children: [
-            //     CircleAvatar(
-            //       radius: 24,
-            //       backgroundColor: $styles.colors.tertiary900,
-            //       child: SvgPicture.asset('assets/images/google.svg'),
-            //     ),
-            //     SizedBoxWidth10,
-            //     CircleAvatar(
-            //       radius: 24,
-            //       backgroundColor: $styles.colors.tertiary900,
-            //       child: SvgPicture.asset('assets/images/apple.svg'),
-            //     ),
-            //   ],
-            // ),
-            // Center(
-            //   child: RichText(
-            //     text: TextSpan(text: "Don't have an account? ", children: [
-            //       TextSpan(
-            //           text: "Sign up",
-            //           recognizer: TapGestureRecognizer()
-            //             ..onTap = () {
-            //               // Navigate To Register Screen
-            //             })
-            //     ]),
-            //   ),
-            // ),
-            // SizedBoxHeight15,
+            CustomButton(
+              text: "Login",
+              textStyle: $styles.text.poppins14_500white,
+            ),
+            SizedBoxHeight40,
+            Row(
+              children: [
+                Expanded(
+                    child: Divider(
+                  color: $styles.colors.grey,
+                )),
+                SizedBoxWidth10,
+                Text('Or', style: $styles.text.lato14_400grey5),
+                SizedBoxWidth10,
+                Expanded(
+                    child: Divider(
+                  color: $styles.colors.grey,
+                )),
+              ],
+            ),
+            SizedBoxHeight40,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                CircleAvatar(
+                  radius: 24,
+                  backgroundColor: $styles.colors.tertiary900,
+                  child: SvgPicture.asset('assets/images/google.svg'),
+                ),
+                SizedBoxWidth10,
+                CircleAvatar(
+                  radius: 24,
+                  backgroundColor: $styles.colors.tertiary900,
+                  child: SvgPicture.asset('assets/images/apple.svg'),
+                ),
+              ],
+            ),
+            Expanded(child: SizedBox()),
+            Center(
+              child: RichText(
+                text: TextSpan(text: "Don't have an account? ", children: [
+                  TextSpan(
+                      text: "Sign up",
+                      recognizer: TapGestureRecognizer()
+                        ..onTap = () {
+                          // Navigate To Register Screen
+                          router.go(RouteStrings.register);
+                        })
+                ]),
+              ),
+            ),
+            SizedBoxHeight15,
           ],
         ),
       ),
