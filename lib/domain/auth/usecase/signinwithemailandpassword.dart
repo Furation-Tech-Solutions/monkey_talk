@@ -6,8 +6,6 @@ import '../../../core/error/failures.dart';
 import '../../../core/usecase/usecase_with_either.dart';
 import '../repos/auth_repo.dart';
 
-
-
 @LazySingleton()
 class SignInWithEmailAndPasswordUsecase
     implements UsecaseWithEither<UserCredential, SignInParams> {

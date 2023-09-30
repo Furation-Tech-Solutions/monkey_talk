@@ -1,6 +1,4 @@
-
 import 'package:flutter/material.dart';
-
 import '../core/routes/routes.dart';
 import '../core/styles.dart/stylekit.dart';
 
@@ -14,7 +12,7 @@ class MyApp extends StatelessWidget {
     return Material(
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'GMS Dashboard',
+        title: 'Real Estate',
         routerDelegate: router.routerDelegate,
         // locale: selectedLocale,
         // localizationsDelegates: const [
