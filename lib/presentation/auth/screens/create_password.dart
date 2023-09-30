@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
-import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 
@@ -34,13 +34,13 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               SizedBoxHeight20,
               CustomTFF(
                 hint: "New password",
-                suffixIcon: Icon(Icons.remove_red_eye),
+                suffixIcon: const Icon(Icons.remove_red_eye),
                 hintstyle: $styles.text.poppins14_400tertiary400,
               ),
               SizedBoxHeight10,
               CustomTFF(
                 hint: "Confirm new password",
-                suffixIcon: Icon(Icons.remove_red_eye),
+                suffixIcon: const Icon(Icons.remove_red_eye),
                 hintstyle: $styles.text.poppins14_400tertiary400,
               ),
               SizedBoxHeight20,

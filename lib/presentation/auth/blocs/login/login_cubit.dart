@@ -9,6 +9,14 @@ class LoginCubit extends Cubit<LoginState> {
 
   LoginCubit({required this.signInWithEmailAndPasswordUsecase})
       : super(const LoginState());
+      
+  void emailChanged(String email) {
+    emit(state.copyWith(email: email));
+  }
+
+  void passwordChanged(String password) {
+    emit(state.copyWith(password: password));
+  }
 
   Future<void> login() async {
     emit(state.copyWith(isLoading: true, errorMessage: ''));

@@ -13,84 +13,17 @@ final GlobalKey<NavigatorState> shellNavigatorKey =
 
 //ONLY USE FOR PARENT ROUTES AND NAVIGATION (NOT FOR DEFINING SUB-ROUTES)
 class RouteStrings {
-  /// AUTH
-  /// Login screen
+  //login screen
   static const login = '/login';
-  static const forgotPassword = '/forgot_Password';
-  static const createPassword = '/create_Password';
+
+  //forget password
+  static const forgotPassword = '/forgotPassword';
+
+  //create password
+  static const createPassword = '/createPassword';
+
+  //register
   static const register = '/register';
-
-  // static const reservation = '/reservation';
-
-  // static const forget = '/forgetPassword';
-
-  // /// Reservations screen
-  // static const reservations = '/reservations';
-
-  // /// Reservations filter by screen
-  // static const reservationsFilterBy = '/reservations/filter';
-
-  // /// Reservation screen which has client info, reservation info, etc
-  // static String reservationsReservationScreen(
-  //         {required String reservationId}) =>
-  //     '/reservations/reservation/$reservationId';
-
-  // /// Reservations screen
-  // static const reservationAdd = '/reservations/add';
-
-  // /// Floorplan screen
-  // static const floorplan = '/floorplan';
-
-  // /// Guestlist screen
-  // static const guestList = '/guestlist';
-  // static const addguest = '/guestlist/addguest';
-
-  // /// Requests screen
-  // static const requests = '/requests';
-  // static String requestResponse({required String requestId}) =>
-  //     '/requests/request/$requestId';
-
-  ///  Clients screen
-  // static const clients = '/clients';
-
-  // static const clientAdd = '/clients/add';
-
-  // static String clientInfo({required String clientId}) =>
-  //     '/clients/client/$clientId';
-  // // static String clientInfo({required String clientId}) => '/clients/$clientId';
-
-  // static String clientEdit({required String clientId}) =>
-  //     '/clients/client/$clientId/edit';
-
-  // ///  Grid screen
-  // static const grid = '/grid';
-
-  // /// Reservation screen which has client info, reservation info, etc after grid
-  // static String gridReservationScreen({required String reservationId}) =>
-  //     '/grid/reservation/$reservationId';
-
-  // ///  Waitlist screen
-  // static const waitlist = '/waitlist';
-
-  // ///  Flows screen
-  // static const flows = '/flows';
-
-  // ///  Settings screen
-  // static const settings = '/settings';
-
-  // // static const clientsEditProfile = '/editprofile';
-  // static const notification = '/settings/notification';
-
-  // static const cheatprintingpos = '/settings/chitprintingpos';
-
-  // static const settingreservation = '/settings/settingreservation';
-
-  // static const bluktableaction = '/settings/bluktableaction';
-
-  // static const reservationsetting = '/settings/reservationseating';
-
-  // static const clientsEditProfile = '/editprofile';
-  // // static const clientsEditProfile = '/editprofile';
 }
 
 final router = GoRouter(
@@ -98,14 +31,10 @@ final router = GoRouter(
   initialLocation: RouteStrings.login,
   debugLogDiagnostics: true,
   routes: [
-    // GoRoute(
-    //   path: RouteStrings.forget,
-    //   builder: (BuildContext context, GoRouterState state) =>
-    //       const ForgotPassword(),
-    // ),
     GoRoute(
       path: RouteStrings.login,
-      builder: (BuildContext context, GoRouterState state) => LoginScreen(),
+      builder: (BuildContext context, GoRouterState state) =>
+          const LoginScreen(),
     ),
     GoRoute(
       path: RouteStrings.forgotPassword,

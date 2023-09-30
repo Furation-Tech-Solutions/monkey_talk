@@ -1,6 +1,8 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:monkey_talk/main.dart';
 
 import '../../../core/error/error_mappers.dart';
 import '../../../core/error/failures.dart';
@@ -11,6 +13,8 @@ abstract class AuthRemoteDS {
     String email,
     String password,
   );
+
+  // Future<Either<Failure, UserCredential>> signInWithGoogle();
 }
 
 @LazySingleton(as: AuthRemoteDS)
@@ -40,4 +44,26 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
+
+  // Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+  //   try {
+  //     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+  //     _appLogger.i(googleUser!.displayName!);
+  //     // if (googleUser == null) {
+  //     //   return Left();
+  //     // }
+  //     final googleAuth = await googleUser.authentication;
+  //     final credential = GoogleAuthProvider.credential(
+  //       accessToken: googleAuth.accessToken,
+  //       idToken: googleAuth.idToken,
+  //     );
+
+  //     final userCredential = await auth.signInWithCredential(credential);
+  //     return Right(userCredential);
+  //   } on FirebaseAuthException catch (e) {
+  //     return Left(
+  //       mapFirebaseAuthExceptionToFailure(e),
+  //     );
+  //   }
+  // }
 }

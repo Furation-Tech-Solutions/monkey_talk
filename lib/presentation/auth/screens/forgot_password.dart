@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
-import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 
@@ -28,7 +28,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         Text("Enter your email linked to your account",
             style: $styles.text.poppins14_400tertiary400),
         SizedBoxHeight30,
-        CustomTFF(
+        const CustomTFF(
           hint: "Enter your email id",
         ),
         SizedBoxHeight30,
