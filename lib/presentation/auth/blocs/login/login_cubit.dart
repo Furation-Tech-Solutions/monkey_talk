@@ -6,10 +6,10 @@ import 'login_state.dart';
 @injectable
 class LoginCubit extends Cubit<LoginState> {
   final SignInWithEmailAndPasswordUsecase signInWithEmailAndPasswordUsecase;
-
+  
   LoginCubit({required this.signInWithEmailAndPasswordUsecase})
       : super(const LoginState());
-      
+
   void emailChanged(String email) {
     emit(state.copyWith(email: email));
   }
@@ -36,4 +36,6 @@ class LoginCubit extends Cubit<LoginState> {
       },
     );
   }
+
+ 
 }

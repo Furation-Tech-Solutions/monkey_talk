@@ -9,7 +9,7 @@ abstract class AuthRepo {
     required String password,
   });
 
-  // Future<Either<Failure, UserCredential>> signInWithGoogle();
+  Future<Either<Failure, UserCredential>> signInWithGoogle();
   // Future<Either<Failure, void>> signOut();
 
   // Future<Either<Failure, void>> forgotPassword({

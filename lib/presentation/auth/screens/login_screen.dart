@@ -5,11 +5,14 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:monkey_talk/core/routes/routes.dart';
+import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart';
 import '../../../core/styles.dart/stylekit.dart';
 import '../../../core/utils.dart/hive_constants.dart';
 import '../../../core/utils.dart/reusable_widgets/custom_button.dart';
 import '../../../core/utils.dart/reusable_widgets/custom_tff.dart';
 import '../../../core/utils.dart/sized_boxes.dart';
+import '../blocs/auth/auth_cubit.dart';
+import '../blocs/auth/auth_state.dart';
 import '../blocs/login/login_cubit.dart';
 import '../blocs/login/login_state.dart';
 
@@ -65,6 +68,14 @@ class LoginPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+             BlocListener<AuthCubit, AuthState>(
+              listener: (context, state) {
+                if (state.isAuthenticated) {
+                  router.go(RouteStrings.register);
+                }
+              },
+                child: const SizedBox.shrink(),
+              ),
             Center(
               child: SvgPicture.asset('assets/images/agentRider.svg'),
             ),
@@ -153,10 +164,15 @@ class LoginPage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: $styles.colors.tertiary900,
-                  child: SvgPicture.asset('assets/images/google.svg'),
+                GestureDetector(
+                  child: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: $styles.colors.tertiary900,
+                    child: SvgPicture.asset('assets/images/google.svg'),
+                  ),
+                  onTap: () {
+                     context.read<SignInWithGoogleCubit>().signInWithGoogle();
+                  },
                 ),
                 SizedBoxWidth10,
                 CircleAvatar(

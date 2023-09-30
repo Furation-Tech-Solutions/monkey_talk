@@ -22,8 +22,8 @@ class AuthRepoImpl implements AuthRepo {
     return await remoteDS.signInWithUsernameAndPassword(email, password);
   }
 
-  // @override
-  // Future<Either<Failure, UserCredential>> signInWithGoogle() async {
-  //   return await remoteDS.signInWithGoogle();
-  // }
+  @override
+  Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+    return await remoteDS.signInWithGoogle();
+  }
 }

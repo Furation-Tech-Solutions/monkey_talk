@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monkey_talk/core/routes/routes.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
@@ -7,6 +8,8 @@ import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_button.dart'
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
+
+import '../blocs/sign_in_with_google/sign_in_with_google_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({super.key});
@@ -27,6 +30,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    SizedBoxHeight40,
                     Center(
                       child: SvgPicture.asset('assets/images/agentRider.svg'),
                     ),
@@ -44,12 +48,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBoxHeight10,
                     InternationalPhoneNumberInput(
-                      onInputChanged: (PhoneNumber number) {
-                       
-                      },
-                      onInputValidated: (bool value) {
-                      
-                      },
+                      onInputChanged: (PhoneNumber number) {},
+                      onInputValidated: (bool value) {},
                       selectorConfig: const SelectorConfig(
                         selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
                       ),
@@ -63,9 +63,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       keyboardType: const TextInputType.numberWithOptions(
                           signed: true, decimal: true),
                       inputBorder: const OutlineInputBorder(),
-                      onSaved: (PhoneNumber number) {
-                       
-                      },
+                      onSaved: (PhoneNumber number) {},
                     ),
                     SizedBoxHeight10,
                     const CustomTFF(
@@ -108,10 +106,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        CircleAvatar(
-                          radius: 24,
-                          backgroundColor: $styles.colors.tertiary900,
-                          child: SvgPicture.asset('assets/images/google.svg'),
+                        GestureDetector(
+                          child: CircleAvatar(
+                            radius: 24,
+                            backgroundColor: $styles.colors.tertiary900,
+                            child: SvgPicture.asset('assets/images/google.svg'),
+                          ),
+                          onTap: () {
+                            context
+                                .read<SignInWithGoogleCubit>()
+                                .signInWithGoogle();
+                          },
                         ),
                         SizedBoxWidth10,
                         CircleAvatar(

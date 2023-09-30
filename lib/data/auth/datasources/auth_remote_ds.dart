@@ -14,7 +14,7 @@ abstract class AuthRemoteDS {
     String password,
   );
 
-  // Future<Either<Failure, UserCredential>> signInWithGoogle();
+  Future<Either<Failure, UserCredential>> signInWithGoogle();
 }
 
 @LazySingleton(as: AuthRemoteDS)
@@ -44,26 +44,26 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
+@override
+  Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+    try {
+      final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+      _appLogger.i(googleUser!.displayName!);
+      // if (googleUser == null) {
+      //   return Left();
+      // }
+      final googleAuth = await googleUser.authentication;
+      final credential = GoogleAuthProvider.credential(
+        accessToken: googleAuth.accessToken,
+        idToken: googleAuth.idToken,
+      );
 
-  // Future<Either<Failure, UserCredential>> signInWithGoogle() async {
-  //   try {
-  //     final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-  //     _appLogger.i(googleUser!.displayName!);
-  //     // if (googleUser == null) {
-  //     //   return Left();
-  //     // }
-  //     final googleAuth = await googleUser.authentication;
-  //     final credential = GoogleAuthProvider.credential(
-  //       accessToken: googleAuth.accessToken,
-  //       idToken: googleAuth.idToken,
-  //     );
-
-  //     final userCredential = await auth.signInWithCredential(credential);
-  //     return Right(userCredential);
-  //   } on FirebaseAuthException catch (e) {
-  //     return Left(
-  //       mapFirebaseAuthExceptionToFailure(e),
-  //     );
-  //   }
-  // }
+      final userCredential = await auth.signInWithCredential(credential);
+      return Right(userCredential);
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        mapFirebaseAuthExceptionToFailure(e),
+      );
+    }
+  }
 }

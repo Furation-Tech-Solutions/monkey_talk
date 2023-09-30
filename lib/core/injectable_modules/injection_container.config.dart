@@ -15,21 +15,24 @@ import 'package:hive_flutter/hive_flutter.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i5;
 import 'package:monkey_talk/core/injectable_modules/firebase_injectable_module.dart'
-    as _i13;
-import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
-    as _i14;
-import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
     as _i15;
+import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
+    as _i16;
+import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
+    as _i17;
 import 'package:monkey_talk/core/logger/applogger.dart' as _i6;
 import 'package:monkey_talk/data/auth/datasources/auth_remote_ds.dart' as _i8;
 import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i10;
 import 'package:monkey_talk/domain/auth/repos/auth_repo.dart' as _i9;
 import 'package:monkey_talk/domain/auth/usecase/signinwithemailandpassword.dart'
     as _i11;
+import 'package:monkey_talk/domain/auth/usecase/signinwithgoogle.dart' as _i12;
 import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart'
     as _i7;
 import 'package:monkey_talk/presentation/auth/blocs/login/login_cubit.dart'
-    as _i12;
+    as _i13;
+import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart'
+    as _i14;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -64,15 +67,19 @@ extension GetItInjectableX on _i1.GetIt {
         ));
     gh.lazySingleton<_i11.SignInWithEmailAndPasswordUsecase>(
         () => _i11.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepo>()));
-    gh.factory<_i12.LoginCubit>(() => _i12.LoginCubit(
+    gh.lazySingleton<_i12.SignInWithGoogleUsecase>(
+        () => _i12.SignInWithGoogleUsecase(gh<_i9.AuthRepo>()));
+    gh.factory<_i13.LoginCubit>(() => _i13.LoginCubit(
         signInWithEmailAndPasswordUsecase:
             gh<_i11.SignInWithEmailAndPasswordUsecase>()));
+    gh.factory<_i14.SignInWithGoogleCubit>(() => _i14.SignInWithGoogleCubit(
+        signInWithGoogleUsecase: gh<_i12.SignInWithGoogleUsecase>()));
     return this;
   }
 }
 
-class _$FirebaseInjectableModule extends _i13.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i15.FirebaseInjectableModule {}
 
-class _$HiveInjectableModule extends _i14.HiveInjectableModule {}
+class _$HiveInjectableModule extends _i16.HiveInjectableModule {}
 
-class _$LoggerInjectableModule extends _i15.LoggerInjectableModule {}
+class _$LoggerInjectableModule extends _i17.LoggerInjectableModule {}
