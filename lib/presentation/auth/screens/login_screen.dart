@@ -22,21 +22,21 @@ class LoginScreen extends StatelessWidget {
             ),
             Text(
               'Welcome!',
-              style: $styles.text.lato20_500,
+              style: $styles.text.poppins20_500tertiary900,
             ),
             SizedBoxHeight5,
             Text(
               'Login using your email and password',
-              style: $styles.text.lato14_400,
+              style: $styles.text.poppins14_400tertiary400,
             ),
             SizedBoxHeight20,
-            SizedBox(
+            const SizedBox(
                 height: 50,
                 child: CustomTFF(
-                  hint: "Enter your Email id",
+                  hint: "Enter your email id",
                 )),
             SizedBoxHeight10,
-            SizedBox(
+            const SizedBox(
                 height: 50,
                 child: CustomTFF(
                   hint: "Password",
@@ -48,14 +48,15 @@ class LoginScreen extends StatelessWidget {
               children: [
                 RichText(
                     text: TextSpan(
-                        text: "Forgot Password?",
-                        style: $styles.text.lato14_600))
+                  text: "Forgot Password?",
+                  style: $styles.text.lato14_400tertiary600,
+                ))
               ],
             ),
             SizedBoxHeight10,
             CustomButton(
               text: "Login",
-              textStyle: $styles.text.poppins14_500White,
+              textStyle: $styles.text.poppins14_500white,
             ),
             SizedBoxHeight40,
             Row(

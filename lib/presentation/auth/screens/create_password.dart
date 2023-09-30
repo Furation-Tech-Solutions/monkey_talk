@@ -46,7 +46,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               SizedBoxHeight20,
               CustomButton(
                 text: "Reset password",
-                textStyle: $styles.text.poppins14_500White,
+                textStyle: $styles.text.poppins14_500white,
               )
             ])));
   }

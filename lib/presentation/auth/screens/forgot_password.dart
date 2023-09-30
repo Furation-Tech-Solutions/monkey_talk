@@ -58,7 +58,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
             ),
           ),
           text: "Next",
-          textStyle: $styles.text.poppins14_500White,
+          textStyle: $styles.text.poppins14_500white,
         ),
       ]),
     ));
