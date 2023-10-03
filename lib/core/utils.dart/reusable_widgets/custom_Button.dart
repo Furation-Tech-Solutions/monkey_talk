@@ -67,7 +67,7 @@ class _CustomButtonState extends State<CustomButton> {
                   : Text(
                       widget.text,
                       style:
-                          widget.textStyle ?? $styles.text.poppins14_500black,
+                          widget.textStyle ?? $styles.text.poppins14_500white,
                       // style: widget.isPrimary
                       // ? $styles.text.lato17_500white
                       // : $styles.text.lato17_500violet,

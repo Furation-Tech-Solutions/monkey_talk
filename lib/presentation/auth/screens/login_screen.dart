@@ -1,11 +1,13 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:monkey_talk/core/routes/routes.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
+import 'package:monkey_talk/presentation/auth/widgets/appHeader.dart';
+
+import '../widgets/appFooter.dart';
 
 class LoginScreen extends StatelessWidget {
   LoginScreen({super.key});
@@ -18,9 +20,7 @@ class LoginScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Center(
-              child: SvgPicture.asset('assets/images/agentRider.svg'),
-            ),
+            AppHeader(),
             Text(
               'Welcome!',
               style: $styles.text.poppins20_500tertiary900,
@@ -64,38 +64,7 @@ class LoginScreen extends StatelessWidget {
               textStyle: $styles.text.poppins14_500white,
             ),
             SizedBoxHeight40,
-            Row(
-              children: [
-                Expanded(
-                    child: Divider(
-                  color: $styles.colors.grey,
-                )),
-                SizedBoxWidth10,
-                Text('Or', style: $styles.text.lato14_400grey5),
-                SizedBoxWidth10,
-                Expanded(
-                    child: Divider(
-                  color: $styles.colors.grey,
-                )),
-              ],
-            ),
-            SizedBoxHeight40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: $styles.colors.tertiary900,
-                  child: SvgPicture.asset('assets/images/google.svg'),
-                ),
-                SizedBoxWidth10,
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: $styles.colors.tertiary900,
-                  child: SvgPicture.asset('assets/images/apple.svg'),
-                ),
-              ],
-            ),
+            AppFooter(),
             Expanded(child: SizedBox()),
             Center(
               child: RichText(
