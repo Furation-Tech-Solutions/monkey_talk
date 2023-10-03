@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-import 'package:monkey_talk/presentation/auth/screens/create_password.dart';
-import 'package:monkey_talk/presentation/auth/screens/forgot_password.dart';
+import 'package:monkey_talk/presentation/auth/screens/create_password_screen.dart';
+import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register_screen.dart';
 
 import '../../presentation/auth/screens/login_screen.dart';
@@ -39,7 +39,7 @@ final router = GoRouter(
     GoRoute(
       path: RouteStrings.forgotPassword,
       builder: (BuildContext context, GoRouterState state) =>
-          const ForgotPasswordPage(),
+          const ForgotPasswordScreen(),
     ),
     GoRoute(
       path: RouteStrings.createPassword,

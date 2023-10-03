@@ -8,7 +8,6 @@ import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_button.dart'
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 import 'package:intl_phone_number_input/intl_phone_number_input.dart';
-
 import '../blocs/sign_in_with_google/sign_in_with_google_cubit.dart';
 
 class RegisterScreen extends StatefulWidget {

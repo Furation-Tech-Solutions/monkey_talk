@@ -26,4 +26,11 @@ class AuthRepoImpl implements AuthRepo {
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
     return await remoteDS.signInWithGoogle();
   }
+
+   @override
+  Future<Either<Failure, void>> forgotPassword({
+    required String email,
+  }) async {
+    return await remoteDS.forgotPassword(email);
+  }
 }

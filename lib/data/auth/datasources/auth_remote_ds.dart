@@ -15,6 +15,10 @@ abstract class AuthRemoteDS {
   );
 
   Future<Either<Failure, UserCredential>> signInWithGoogle();
+
+  Future<Either<Failure, void>> forgotPassword(
+    String email,
+  );
 }
 
 @LazySingleton(as: AuthRemoteDS)
@@ -44,16 +48,37 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
-@override
+// @override
+//   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
+//     try {
+//       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
+//       _appLogger.i(googleUser!.displayName!);
+//       // if (googleUser == null) {
+//       //   return Left();
+//       // }
+//       final googleAuth = await googleUser.authentication;
+//       final credential = GoogleAuthProvider.credential(
+//         accessToken: googleAuth.accessToken,
+//         idToken: googleAuth.idToken,
+//       );
+
+//       final userCredential = await auth.signInWithCredential(credential);
+//       return Right(userCredential);
+//     } on FirebaseAuthException catch (e) {
+//       return Left(
+//         mapFirebaseAuthExceptionToFailure(e),
+//       );
+//     }
+//   }
+
+  @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
     try {
+      final GoogleSignIn googleSignIn = GoogleSignIn();
       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-      _appLogger.i(googleUser!.displayName!);
-      // if (googleUser == null) {
-      //   return Left();
-      // }
-      final googleAuth = await googleUser.authentication;
-      final credential = GoogleAuthProvider.credential(
+      final GoogleSignInAuthentication googleAuth =
+          await googleUser!.authentication;
+      final OAuthCredential credential = GoogleAuthProvider.credential(
         accessToken: googleAuth.accessToken,
         idToken: googleAuth.idToken,
       );
@@ -64,6 +89,18 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(
         mapFirebaseAuthExceptionToFailure(e),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> forgotPassword(String email) async {
+    try {
+      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      _appLogger.i('AuthRemoteDS signin with $email success');
+      return const Right(null);
+    } on FirebaseAuthException catch (e) {
+      _appLogger.e('AuthRemoteDS signin with $email failed', error: e);
+      return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
 }

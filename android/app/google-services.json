@@ -7,18 +7,18 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:972323539727:android:28c92ffd816fdd2ff88c7a",
+        "mobilesdk_app_id": "1:972323539727:android:53eb4ac14d7b5e4bf88c7a",
         "android_client_info": {
-          "package_name": "com.example.realEstate"
+          "package_name": "com.example.monkey_talk"
         }
       },
       "oauth_client": [
         {
-          "client_id": "972323539727-djljbak7sja9tqbhk9per13cu4hcrq18.apps.googleusercontent.com",
+          "client_id": "972323539727-9amr0teuvhll67vmr1m9cdr8s9mhj7bn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.realEstate",
-            "certificate_hash": "4c498cef2ef9a517c153b6294f673055fe84a5e9"
+            "package_name": "com.example.monkey_talk",
+            "certificate_hash": "d3952d20ae45aae2a2ab841b2e1e7e63f2d58292"
           }
         },
         {
@@ -39,10 +39,10 @@
               "client_type": 3
             },
             {
-              "client_id": "972323539727-jijmgo6ntoqse27tddehr8hru6gaj951.apps.googleusercontent.com",
+              "client_id": "972323539727-hdat8t9h37oua6htgbd5gs4ua8ee98pq.apps.googleusercontent.com",
               "client_type": 2,
               "ios_info": {
-                "bundle_id": "com.example.realEstate"
+                "bundle_id": "com.example.realEstateRunnerTests"
               }
             }
           ]
