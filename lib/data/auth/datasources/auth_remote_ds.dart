@@ -103,4 +103,5 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
+
 }
