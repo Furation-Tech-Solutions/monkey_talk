@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return Material(
       child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        title: 'GMS Dashboard',
+        title: 'Real Estate',
         routerDelegate: router.routerDelegate,
         // locale: selectedLocale,
         // localizationsDelegates: const [
