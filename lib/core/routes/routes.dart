@@ -5,6 +5,7 @@ import 'package:monkey_talk/presentation/auth/screens/forgot_password.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
+import 'package:monkey_talk/presentation/home/firstHomePage.dart';
 
 import '../../presentation/auth/screens/login_screen.dart';
 
@@ -23,6 +24,10 @@ class RouteStrings {
   static const register = '/register';
   static const registerTwo = '/registerTwo';
   static const registerThree = '/registerThree';
+
+  // Homepage
+  static const homePage = '/homepage';
+
   // static const reservation = '/reservation';
 
   // static const forget = '/forgetPassword';
@@ -134,6 +139,10 @@ final router = GoRouter(
       path: RouteStrings.registerThree,
       builder: (BuildContext context, GoRouterState state) =>
           const RegisterThree(),
+    ),
+    GoRoute(
+      path: RouteStrings.homePage,
+      builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
     // GoRoute(
     //     path: RouteStrings.guestList,
