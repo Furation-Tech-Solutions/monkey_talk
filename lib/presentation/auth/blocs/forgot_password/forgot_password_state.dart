@@ -11,3 +11,4 @@ class ForgotPasswordState with _$ForgotPasswordState {
     @Default(false) bool isSucess,
   }) = _ForgotPasswordState;
 }
+

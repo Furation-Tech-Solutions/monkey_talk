@@ -15,6 +15,7 @@ import '../blocs/auth/auth_cubit.dart';
 import '../blocs/auth/auth_state.dart';
 import '../blocs/login/login_cubit.dart';
 import '../blocs/login/login_state.dart';
+import '../blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -68,14 +69,14 @@ class LoginPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-             BlocListener<AuthCubit, AuthState>(
+            BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state.isAuthenticated) {
                   router.go(RouteStrings.register);
                 }
               },
-                child: const SizedBox.shrink(),
-              ),
+              child: const SizedBox.shrink(),
+            ),
             Center(
               child: SvgPicture.asset('assets/images/agentRider.svg'),
             ),
@@ -171,14 +172,19 @@ class LoginPage extends StatelessWidget {
                     child: SvgPicture.asset('assets/images/google.svg'),
                   ),
                   onTap: () {
-                     context.read<SignInWithGoogleCubit>().signInWithGoogle();
+                    context.read<SignInWithGoogleCubit>().signInWithGoogle();
                   },
                 ),
                 SizedBoxWidth10,
-                CircleAvatar(
-                  radius: 24,
-                  backgroundColor: $styles.colors.tertiary900,
-                  child: SvgPicture.asset('assets/images/apple.svg'),
+                GestureDetector(
+                  child: CircleAvatar(
+                    radius: 24,
+                    backgroundColor: $styles.colors.tertiary900,
+                    child: SvgPicture.asset('assets/images/apple.svg'),
+                  ),
+                  onTap: () {
+                    context.read<SignInWithAppleCubit>().signInWithApple();
+                  },
                 ),
               ],
             ),

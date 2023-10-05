@@ -15,28 +15,33 @@ import 'package:hive_flutter/hive_flutter.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i5;
 import 'package:monkey_talk/core/injectable_modules/firebase_injectable_module.dart'
-    as _i17;
-import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
-    as _i18;
-import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
     as _i19;
+import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
+    as _i20;
+import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
+    as _i21;
 import 'package:monkey_talk/core/logger/applogger.dart' as _i6;
 import 'package:monkey_talk/data/auth/datasources/auth_remote_ds.dart' as _i8;
 import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i10;
 import 'package:monkey_talk/domain/auth/repos/auth_repo.dart' as _i9;
 import 'package:monkey_talk/domain/auth/usecase/forgot_password_usecase.dart'
     as _i11;
-import 'package:monkey_talk/domain/auth/usecase/signinwithemailandpassword.dart'
+import 'package:monkey_talk/domain/auth/usecase/signin_with_apple_usecase.dart'
     as _i13;
-import 'package:monkey_talk/domain/auth/usecase/signinwithgoogle.dart' as _i14;
+import 'package:monkey_talk/domain/auth/usecase/signin_with_email_and_password_usecase.dart'
+    as _i14;
+import 'package:monkey_talk/domain/auth/usecase/signin_with_google_usecase.dart'
+    as _i15;
 import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart'
     as _i7;
 import 'package:monkey_talk/presentation/auth/blocs/forgot_password/forgot_password_cubit.dart'
     as _i12;
 import 'package:monkey_talk/presentation/auth/blocs/login/login_cubit.dart'
-    as _i15;
-import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart'
     as _i16;
+import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart'
+    as _i17;
+import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart'
+    as _i18;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -73,21 +78,25 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i11.ForgotPasswordUsecase(gh<_i9.AuthRepo>()));
     gh.factory<_i12.ForgotpasswordCubit>(() => _i12.ForgotpasswordCubit(
         forgotPasswordUsecase: gh<_i11.ForgotPasswordUsecase>()));
-    gh.lazySingleton<_i13.SignInWithEmailAndPasswordUsecase>(
-        () => _i13.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepo>()));
-    gh.lazySingleton<_i14.SignInWithGoogleUsecase>(
-        () => _i14.SignInWithGoogleUsecase(gh<_i9.AuthRepo>()));
-    gh.factory<_i15.LoginCubit>(() => _i15.LoginCubit(
+    gh.lazySingleton<_i13.SignInWithAppleUsecase>(
+        () => _i13.SignInWithAppleUsecase(gh<_i9.AuthRepo>()));
+    gh.lazySingleton<_i14.SignInWithEmailAndPasswordUsecase>(
+        () => _i14.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepo>()));
+    gh.lazySingleton<_i15.SignInWithGoogleUsecase>(
+        () => _i15.SignInWithGoogleUsecase(gh<_i9.AuthRepo>()));
+    gh.factory<_i16.LoginCubit>(() => _i16.LoginCubit(
         signInWithEmailAndPasswordUsecase:
-            gh<_i13.SignInWithEmailAndPasswordUsecase>()));
-    gh.factory<_i16.SignInWithGoogleCubit>(() => _i16.SignInWithGoogleCubit(
-        signInWithGoogleUsecase: gh<_i14.SignInWithGoogleUsecase>()));
+            gh<_i14.SignInWithEmailAndPasswordUsecase>()));
+    gh.factory<_i17.SignInWithAppleCubit>(() => _i17.SignInWithAppleCubit(
+        signInWithAppleUsecase: gh<_i13.SignInWithAppleUsecase>()));
+    gh.factory<_i18.SignInWithGoogleCubit>(() => _i18.SignInWithGoogleCubit(
+        signInWithGoogleUsecase: gh<_i15.SignInWithGoogleUsecase>()));
     return this;
   }
 }
 
-class _$FirebaseInjectableModule extends _i17.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i19.FirebaseInjectableModule {}
 
-class _$HiveInjectableModule extends _i18.HiveInjectableModule {}
+class _$HiveInjectableModule extends _i20.HiveInjectableModule {}
 
-class _$LoggerInjectableModule extends _i19.LoggerInjectableModule {}
+class _$LoggerInjectableModule extends _i21.LoggerInjectableModule {}
