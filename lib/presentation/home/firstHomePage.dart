@@ -26,7 +26,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Row(
                       children: [
-                        Icon(Icons.location_on),
+                        const Icon(Icons.location_on),
                         SizedBoxWidth10,
                         Column(
                           children: [
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                     CircleAvatar(
                       radius: 21,
                       backgroundColor: $styles.colors.primary200,
-                      child: Icon(Icons.notifications_active),
+                      child: const Icon(Icons.notifications_active),
                     ),
                   ],
                 ),
@@ -56,7 +56,7 @@ class _HomePageState extends State<HomePage> {
                   children: [
                     Expanded(
                       child: Container(
-                        constraints: BoxConstraints(
+                        constraints: const BoxConstraints(
                           minHeight: 30,
                           maxHeight: 40,
                         ),
@@ -148,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                                     children: [
                                       Row(
                                         children: [
-                                          Icon(Icons.timer_outlined),
+                                          const Icon(Icons.timer_outlined),
                                           SizedBoxWidth10,
                                           Text(
                                             "11:00 AM - 12:00 PM",
