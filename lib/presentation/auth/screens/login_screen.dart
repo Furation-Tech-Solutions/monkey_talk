@@ -15,7 +15,6 @@ import '../blocs/auth/auth_cubit.dart';
 import '../blocs/auth/auth_state.dart';
 import '../blocs/login/login_cubit.dart';
 import '../blocs/login/login_state.dart';
-import '../blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -49,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (uid != null) {
       Future.delayed(Duration.zero, () {
         // Future.delayed is not necessary but prevents console errors
-        router.go(RouteStrings.register);
+        router.go(RouteStrings.homePage);
       });
       return Container();
     } else {
@@ -77,7 +76,7 @@ class LoginPage extends StatelessWidget {
               },
               child: const SizedBox.shrink(),
             ),
-            AppHeader(),
+            const AppHeader(),
             Text(
               'Welcome!',
               style: $styles.text.poppins20_500tertiary900,
@@ -144,8 +143,8 @@ class LoginPage extends StatelessWidget {
               );
             }),
             SizedBoxHeight40,
-            AppFooter(),
-            Expanded(child: SizedBox()),
+            const AppFooter(),
+            const Expanded(child: SizedBox()),
             Center(
               child: RichText(
                 text: TextSpan(

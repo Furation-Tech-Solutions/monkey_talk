@@ -6,6 +6,8 @@ import 'package:monkey_talk/presentation/auth/screens/register/register_screen.d
 import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
 import 'package:monkey_talk/presentation/home/firstHomePage.dart';
+import 'package:monkey_talk/presentation/profile/screens/profile_screen.dart';
+import 'package:monkey_talk/presentation/search/screens/search_screen.dart';
 
 import '../../presentation/auth/screens/login_screen.dart';
 
@@ -32,6 +34,12 @@ class RouteStrings {
 
   // Homepage
   static const homePage = '/homepage';
+
+  //profile
+  static const profile = '/profile';
+
+  //search
+  static const search = '/search';
 }
 
 final router = GoRouter(
@@ -73,6 +81,14 @@ final router = GoRouter(
       path: RouteStrings.homePage,
       builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
+    GoRoute(
+      path: RouteStrings.profile,
+      builder: (context, state) => const ProfileScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.search,
+      builder: (context, state) => SearchScreen(),
+    )
     // GoRoute(
     //     path: RouteStrings.guestList,
     //     builder: (BuildContext context, GoRouterState state) =>

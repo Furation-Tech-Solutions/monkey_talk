@@ -38,12 +38,10 @@ class AuthRepoImpl implements AuthRepo {
   }) async {
     return await remoteDS.forgotPassword(email);
   }
-  
+
   @override
-  Future<Either<Failure, UserCredential>> registerWithEmailAndPassword({required String email, required String password})async {
-      return await remoteDS.registerWithEmailAndPassword(email, password);
-
+  Future<Either<Failure, UserCredential>> registerWithEmailAndPassword(
+      {required String email, required String password}) async {
+    return await remoteDS.registerWithEmailAndPassword(email, password);
   }
-  
-
 }

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart';
 
 import '../../../core/styles.dart/stylekit.dart';
 import '../../../core/utils.dart/sized_boxes.dart';
@@ -35,10 +37,15 @@ class AppFooter extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CircleAvatar(
-              radius: 24,
-              backgroundColor: $styles.colors.tertiary900,
-              child: SvgPicture.asset('assets/images/google.svg'),
+            GestureDetector(
+              onTap: () {
+                context.read<SignInWithGoogleCubit>().signInWithGoogle();
+              },
+              child: CircleAvatar(
+                radius: 24,
+                backgroundColor: $styles.colors.tertiary900,
+                child: SvgPicture.asset('assets/images/google.svg'),
+              ),
             ),
             SizedBoxWidth10,
             CircleAvatar(
