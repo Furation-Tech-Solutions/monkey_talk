@@ -26,9 +26,10 @@ import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i10;
 import 'package:monkey_talk/domain/auth/repos/auth_repo.dart' as _i9;
 import 'package:monkey_talk/domain/auth/usecase/forgot_password_usecase.dart'
     as _i11;
-import 'package:monkey_talk/domain/auth/usecase/signinwithemailandpassword.dart'
+import 'package:monkey_talk/domain/auth/usecase/signin_with_email_and_password_usecase.dart'
     as _i13;
-import 'package:monkey_talk/domain/auth/usecase/signinwithgoogle.dart' as _i14;
+import 'package:monkey_talk/domain/auth/usecase/signin_with_google_usecase.dart'
+    as _i14;
 import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart'
     as _i7;
 import 'package:monkey_talk/presentation/auth/blocs/forgot_password/forgot_password_cubit.dart'

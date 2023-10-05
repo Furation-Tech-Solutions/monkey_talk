@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../domain/auth/usecase/signinwithgoogle.dart';
+import '../../../../domain/auth/usecase/signin_with_google_usecase.dart';
 import 'sign_in_with_google_state.dart';
 
 @injectable
