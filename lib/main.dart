@@ -6,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart';
 import 'package:monkey_talk/presentation/auth/blocs/forgot_password/forgot_password_cubit.dart';
+import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart';
 import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart';
 import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart';
 import 'app/app.dart';
@@ -48,6 +49,7 @@ class MainApp extends StatelessWidget {
         BlocProvider(create: (context) => di<SignInWithGoogleCubit>()),
         BlocProvider(create: (context) => di<ForgotpasswordCubit>()),
         BlocProvider(create: (context) => di<RegisterCubit>()),
+         BlocProvider(create: (context) => di<SignInWithAppleCubit>()),
       ],
       child: const MyApp(),
     );

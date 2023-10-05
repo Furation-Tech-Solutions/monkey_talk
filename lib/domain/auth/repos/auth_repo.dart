@@ -11,6 +11,7 @@ abstract class AuthRepo {
 
   Future<Either<Failure, UserCredential>> signInWithGoogle();
   // Future<Either<Failure, void>> signOut();
+  Future<Either<Failure, UserCredential>> signInWithApple();
 
   Future<Either<Failure, void>> forgotPassword({
     required String email,
@@ -19,4 +20,5 @@ abstract class AuthRepo {
     required String email,
     required String password,
   });
+  
 }

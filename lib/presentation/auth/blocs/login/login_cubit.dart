@@ -1,6 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
-import '../../../../domain/auth/usecase/signinwithemailandpassword.dart';
+import '../../../../domain/auth/usecase/signin_with_email_and_password_usecase.dart';
 import 'login_state.dart';
 
 @injectable

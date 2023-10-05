@@ -27,7 +27,12 @@ class AuthRepoImpl implements AuthRepo {
     return await remoteDS.signInWithGoogle();
   }
 
-   @override
+  @override
+  Future<Either<Failure, UserCredential>> signInWithApple() async {
+    return await remoteDS.signInWithApple();
+  }
+
+  @override
   Future<Either<Failure, void>> forgotPassword({
     required String email,
   }) async {
@@ -39,4 +44,6 @@ class AuthRepoImpl implements AuthRepo {
       return await remoteDS.registerWithEmailAndPassword(email, password);
 
   }
+  
+
 }

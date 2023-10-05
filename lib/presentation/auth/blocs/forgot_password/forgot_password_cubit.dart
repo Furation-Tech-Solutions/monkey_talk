@@ -1,4 +1,5 @@
-import 'package:flutter_bloc/flutter_bloc.dart';
+// ignore: depend_on_referenced_packages
+import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
 
 import '../../../../domain/auth/usecase/forgot_password_usecase.dart';
@@ -15,7 +16,7 @@ class ForgotpasswordCubit extends Cubit<ForgotPasswordState> {
     emit(state.copyWith(email: email));
   }
 
-  Future<void> forgotpassword() async {
+    Future<void> forgotpassword() async {
     emit(state.copyWith(isLoading: true, errorMessage: ''));
 
     final forgotpasswordResult = await forgotPasswordUsecase.call(

@@ -15,6 +15,7 @@ import '../blocs/auth/auth_cubit.dart';
 import '../blocs/auth/auth_state.dart';
 import '../blocs/login/login_cubit.dart';
 import '../blocs/login/login_state.dart';
+import '../blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});

@@ -16,6 +16,7 @@ abstract class AuthRemoteDS {
 
   Future<Either<Failure, UserCredential>> signInWithGoogle();
 
+  Future<Either<Failure, UserCredential>> signInWithApple();
   Future<Either<Failure, void>> forgotPassword(
     String email,
   );
@@ -50,28 +51,6 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
-// @override
-//   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
-//     try {
-//       final GoogleSignInAccount? googleUser = await googleSignIn.signIn();
-//       _appLogger.i(googleUser!.displayName!);
-//       // if (googleUser == null) {
-//       //   return Left();
-//       // }
-//       final googleAuth = await googleUser.authentication;
-//       final credential = GoogleAuthProvider.credential(
-//         accessToken: googleAuth.accessToken,
-//         idToken: googleAuth.idToken,
-//       );
-
-//       final userCredential = await auth.signInWithCredential(credential);
-//       return Right(userCredential);
-//     } on FirebaseAuthException catch (e) {
-//       return Left(
-//         mapFirebaseAuthExceptionToFailure(e),
-//       );
-//     }
-//   }
 
   @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
@@ -86,6 +65,19 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       );
 
       final userCredential = await auth.signInWithCredential(credential);
+      return Right(userCredential);
+    } on FirebaseAuthException catch (e) {
+      return Left(
+        mapFirebaseAuthExceptionToFailure(e),
+      );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserCredential>> signInWithApple() async {
+    try {
+      final UserCredential userCredential =
+          await auth.signInWithProvider(AppleAuthProvider());
       return Right(userCredential);
     } on FirebaseAuthException catch (e) {
       return Left(
