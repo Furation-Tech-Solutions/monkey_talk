@@ -29,4 +29,7 @@ class AppColors {
 
   //Primary/200
   final Color primary200 = const Color(0xFFF17E5B);
+
+  //Background
+  final Color background = const Color(0xFFF5FCFF);
 }

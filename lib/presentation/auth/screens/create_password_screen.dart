@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
+import 'package:monkey_talk/presentation/auth/widgets/appHeader.dart';
 
 class CreatePasswordScreen extends StatefulWidget {
   const CreatePasswordScreen({super.key});
@@ -20,10 +20,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             padding: const EdgeInsets.all(14),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Center(
-                child: SvgPicture.asset('assets/images/agentRider.svg'),
-              ),
-              SizedBoxHeight60,
+              AppHeader(),
               Text(
                 "Create a strong password",
                 style: $styles.text.poppins20_500black,

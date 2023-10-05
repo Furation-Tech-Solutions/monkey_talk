@@ -1,16 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_svg/svg.dart';
-import 'package:hive_flutter/hive_flutter.dart';
 import 'package:monkey_talk/core/routes/routes.dart';
-import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart';
-import '../../../core/styles.dart/stylekit.dart';
+import 'package:monkey_talk/core/styles.dart/stylekit.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
+import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
+import 'package:monkey_talk/presentation/auth/widgets/appHeader.dart';
+import '../widgets/appFooter.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/utils.dart/hive_constants.dart';
 import '../../../core/utils.dart/reusable_widgets/custom_button.dart';
-import '../../../core/utils.dart/reusable_widgets/custom_tff.dart';
-import '../../../core/utils.dart/sized_boxes.dart';
 import '../blocs/auth/auth_cubit.dart';
 import '../blocs/auth/auth_state.dart';
 import '../blocs/login/login_cubit.dart';
@@ -77,9 +77,7 @@ class LoginPage extends StatelessWidget {
               },
               child: const SizedBox.shrink(),
             ),
-            Center(
-              child: SvgPicture.asset('assets/images/agentRider.svg'),
-            ),
+            AppHeader(),
             Text(
               'Welcome!',
               style: $styles.text.poppins20_500tertiary900,
@@ -146,49 +144,8 @@ class LoginPage extends StatelessWidget {
               );
             }),
             SizedBoxHeight40,
-            Row(
-              children: [
-                Expanded(
-                    child: Divider(
-                  color: $styles.colors.grey,
-                )),
-                SizedBoxWidth10,
-                Text('Or', style: $styles.text.lato14_400grey5),
-                SizedBoxWidth10,
-                Expanded(
-                    child: Divider(
-                  color: $styles.colors.grey,
-                )),
-              ],
-            ),
-            SizedBoxHeight40,
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  child: CircleAvatar(
-                    radius: 24,
-                    backgroundColor: $styles.colors.tertiary900,
-                    child: SvgPicture.asset('assets/images/google.svg'),
-                  ),
-                  onTap: () {
-                    context.read<SignInWithGoogleCubit>().signInWithGoogle();
-                  },
-                ),
-                SizedBoxWidth10,
-                GestureDetector(
-                  child: CircleAvatar(
-                    radius: 24,
-                    backgroundColor: $styles.colors.tertiary900,
-                    child: SvgPicture.asset('assets/images/apple.svg'),
-                  ),
-                  onTap: () {
-                    context.read<SignInWithAppleCubit>().signInWithApple();
-                  },
-                ),
-              ],
-            ),
-            const Expanded(child: SizedBox()),
+            AppFooter(),
+            Expanded(child: SizedBox()),
             Center(
               child: RichText(
                 text: TextSpan(

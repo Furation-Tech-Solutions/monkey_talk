@@ -17,9 +17,17 @@ class Texts {
   late final TextStyle poppins12_400tertiary400 = _createFont(poppins,
       sizePx: 12, weight: FontWeight.w400, color: $styles.colors.tertiary400);
 
+  late final TextStyle poppins12_400tertiary900 = _createFont(poppins,
+      sizePx: 12, weight: FontWeight.w400, color: $styles.colors.tertiary900);
+
+  late final TextStyle poppins12_500primary200 = _createFont(poppins,
+      sizePx: 12, weight: FontWeight.w500, color: $styles.colors.primary200);
 //// 14
   late final TextStyle poppins14_400tertiary900 = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w400, color: $styles.colors.tertiary900);
+
+  late final TextStyle poppins14_500tertiary900 = _createFont(poppins,
+      sizePx: 14, weight: FontWeight.w500, color: $styles.colors.tertiary900);
 
   late final TextStyle poppins14_400tertiary400 = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w400, color: $styles.colors.tertiary400);
@@ -33,6 +41,9 @@ class Texts {
   late final TextStyle poppins14_500black = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w500, color: $styles.colors.black);
 
+  late final TextStyle poppins14_500primary200 = _createFont(poppins,
+      sizePx: 14, weight: FontWeight.w500, color: $styles.colors.primary200);
+
   late final TextStyle poppins14_600tertiary600 = _createFont(poppins,
       sizePx: 14, weight: FontWeight.w600, color: $styles.colors.tertiary600);
 
@@ -40,6 +51,8 @@ class Texts {
   late final TextStyle poppins16_700primary200 = _createFont(poppins,
       sizePx: 16, weight: FontWeight.w700, color: $styles.colors.primary200);
 
+  late final TextStyle poppins16_500tertiary900 = _createFont(poppins,
+      sizePx: 16, weight: FontWeight.w500, color: $styles.colors.tertiary900);
 // 20
   late final TextStyle poppins20_500black = _createFont(poppins,
       sizePx: 20, weight: FontWeight.w500, color: $styles.colors.black);

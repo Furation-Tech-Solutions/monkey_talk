@@ -2,7 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:monkey_talk/presentation/auth/screens/create_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dart';
-import 'package:monkey_talk/presentation/auth/screens/register_screen.dart';
+import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
+import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
+import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
+import 'package:monkey_talk/presentation/home/firstHomePage.dart';
 
 import '../../presentation/auth/screens/login_screen.dart';
 
@@ -24,6 +27,11 @@ class RouteStrings {
 
   //register
   static const register = '/register';
+  static const registerTwo = '/registerTwo';
+  static const registerThree = '/registerThree';
+
+  // Homepage
+  static const homePage = '/homepage';
 }
 
 final router = GoRouter(
@@ -50,6 +58,20 @@ final router = GoRouter(
       path: RouteStrings.register,
       builder: (BuildContext context, GoRouterState state) =>
           const RegisterScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.registerTwo,
+      builder: (BuildContext context, GoRouterState state) =>
+          const RegisterTwo(),
+    ),
+    GoRoute(
+      path: RouteStrings.registerThree,
+      builder: (BuildContext context, GoRouterState state) =>
+          const RegisterThree(),
+    ),
+    GoRoute(
+      path: RouteStrings.homePage,
+      builder: (BuildContext context, GoRouterState state) => const HomePage(),
     ),
     // GoRoute(
     //     path: RouteStrings.guestList,

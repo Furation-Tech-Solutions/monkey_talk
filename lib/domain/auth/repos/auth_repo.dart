@@ -16,5 +16,9 @@ abstract class AuthRepo {
   Future<Either<Failure, void>> forgotPassword({
     required String email,
   });
+  Future<Either<Failure, UserCredential>> registerWithEmailAndPassword({
+    required String email,
+    required String password,
+  });
   
 }

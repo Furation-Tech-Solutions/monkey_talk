@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import '../../styles.dart/stylekit.dart';
 
-class CustomButton extends StatefulWidget {
-  const CustomButton({
+class CustomButtonWithBorderLine extends StatefulWidget {
+  const CustomButtonWithBorderLine({
     super.key,
     required this.text,
     this.onTap,
@@ -21,10 +21,12 @@ class CustomButton extends StatefulWidget {
   final bool isLoading;
   final Color? color;
   @override
-  State<CustomButton> createState() => _CustomButtonState();
+  State<CustomButtonWithBorderLine> createState() =>
+      _CustomButtonWithBorderLineState();
 }
 
-class _CustomButtonState extends State<CustomButton> {
+class _CustomButtonWithBorderLineState
+    extends State<CustomButtonWithBorderLine> {
   bool isHover = false;
   @override
   Widget build(BuildContext context) {
@@ -43,11 +45,10 @@ class _CustomButtonState extends State<CustomButton> {
               //       )
               //     : null,
               borderRadius: BorderRadius.circular(4.0),
-              // border: !widget.isPrimary
-              //     ? Border.all(color: $styles.colors.lavenderBlue)
-              //     : null,
+              border: Border.all(color: $styles.colors.primary200)
+
               // color: widget.isDisabled ? Colors.grey : null,
-              color: $styles.colors.primary200),
+              ),
           child: InkWell(
             onHover: (val) {
               setState(() {
@@ -66,8 +67,8 @@ class _CustomButtonState extends State<CustomButton> {
                     )
                   : Text(
                       widget.text,
-                      style:
-                          widget.textStyle ?? $styles.text.poppins14_500white,
+                      style: widget.textStyle ??
+                          $styles.text.poppins14_500primary200,
                       // style: widget.isPrimary
                       // ? $styles.text.lato17_500white
                       // : $styles.text.lato17_500violet,

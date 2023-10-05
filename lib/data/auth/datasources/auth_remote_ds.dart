@@ -20,6 +20,8 @@ abstract class AuthRemoteDS {
   Future<Either<Failure, void>> forgotPassword(
     String email,
   );
+
+  registerWithEmailAndPassword(String email, String password) {}
 }
 
 @LazySingleton(as: AuthRemoteDS)
@@ -81,6 +83,24 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
       return Left(
         mapFirebaseAuthExceptionToFailure(e),
       );
+    }
+  }
+
+  @override
+  Future<Either<Failure, UserCredential>> registerWithEmailAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+      _appLogger.i('AuthRemoteDS Register with $email success');
+      return Right(userCred);
+    } on FirebaseAuthException catch (e) {
+      _appLogger.e('AuthRemoteDS Register with $email failed', error: e);
+      return Left(mapFirebaseAuthExceptionToFailure(e));
     }
   }
 
