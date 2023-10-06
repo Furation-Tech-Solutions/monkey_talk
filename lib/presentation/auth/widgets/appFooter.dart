@@ -13,7 +13,7 @@ class AppFooter extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Container(
+        SizedBox(
           height: 40,
           child: Row(
             children: [

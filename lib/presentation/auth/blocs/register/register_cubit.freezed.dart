@@ -21,6 +21,8 @@ mixin _$RegisterState {
   String get recoNumber => throw _privateConstructorUsedError;
   String get password => throw _privateConstructorUsedError;
   String get confirmPass => throw _privateConstructorUsedError;
+  dynamic get isLoading => throw _privateConstructorUsedError;
+  dynamic get errorMesg => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $RegisterStateCopyWith<RegisterState> get copyWith =>
@@ -38,7 +40,9 @@ abstract class $RegisterStateCopyWith<$Res> {
       String number,
       String recoNumber,
       String password,
-      String confirmPass});
+      String confirmPass,
+      dynamic isLoading,
+      dynamic errorMesg});
 }
 
 /// @nodoc
@@ -59,6 +63,8 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
     Object? recoNumber = null,
     Object? password = null,
     Object? confirmPass = null,
+    Object? isLoading = freezed,
+    Object? errorMesg = freezed,
   }) {
     return _then(_value.copyWith(
       email: null == email
@@ -81,6 +87,14 @@ class _$RegisterStateCopyWithImpl<$Res, $Val extends RegisterState>
           ? _value.confirmPass
           : confirmPass // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: freezed == isLoading
+          ? _value.isLoading
+          : isLoading // ignore: cast_nullable_to_non_nullable
+              as dynamic,
+      errorMesg: freezed == errorMesg
+          ? _value.errorMesg
+          : errorMesg // ignore: cast_nullable_to_non_nullable
+              as dynamic,
     ) as $Val);
   }
 }
@@ -98,7 +112,9 @@ abstract class _$$RegisterStateImplCopyWith<$Res>
       String number,
       String recoNumber,
       String password,
-      String confirmPass});
+      String confirmPass,
+      dynamic isLoading,
+      dynamic errorMesg});
 }
 
 /// @nodoc
@@ -117,6 +133,8 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
     Object? recoNumber = null,
     Object? password = null,
     Object? confirmPass = null,
+    Object? isLoading = freezed,
+    Object? errorMesg = freezed,
   }) {
     return _then(_$RegisterStateImpl(
       email: null == email
@@ -139,6 +157,8 @@ class __$$RegisterStateImplCopyWithImpl<$Res>
           ? _value.confirmPass
           : confirmPass // ignore: cast_nullable_to_non_nullable
               as String,
+      isLoading: freezed == isLoading ? _value.isLoading! : isLoading,
+      errorMesg: freezed == errorMesg ? _value.errorMesg! : errorMesg,
     ));
   }
 }
@@ -151,7 +171,9 @@ class _$RegisterStateImpl implements _RegisterState {
       this.number = '',
       this.recoNumber = '',
       this.password = '',
-      this.confirmPass = ''});
+      this.confirmPass = '',
+      this.isLoading = false,
+      this.errorMesg = ''});
 
   @override
   @JsonKey()
@@ -168,10 +190,16 @@ class _$RegisterStateImpl implements _RegisterState {
   @override
   @JsonKey()
   final String confirmPass;
+  @override
+  @JsonKey()
+  final dynamic isLoading;
+  @override
+  @JsonKey()
+  final dynamic errorMesg;
 
   @override
   String toString() {
-    return 'RegisterState(email: $email, number: $number, recoNumber: $recoNumber, password: $password, confirmPass: $confirmPass)';
+    return 'RegisterState(email: $email, number: $number, recoNumber: $recoNumber, password: $password, confirmPass: $confirmPass, isLoading: $isLoading, errorMesg: $errorMesg)';
   }
 
   @override
@@ -186,12 +214,21 @@ class _$RegisterStateImpl implements _RegisterState {
             (identical(other.password, password) ||
                 other.password == password) &&
             (identical(other.confirmPass, confirmPass) ||
-                other.confirmPass == confirmPass));
+                other.confirmPass == confirmPass) &&
+            const DeepCollectionEquality().equals(other.isLoading, isLoading) &&
+            const DeepCollectionEquality().equals(other.errorMesg, errorMesg));
   }
 
   @override
   int get hashCode => Object.hash(
-      runtimeType, email, number, recoNumber, password, confirmPass);
+      runtimeType,
+      email,
+      number,
+      recoNumber,
+      password,
+      confirmPass,
+      const DeepCollectionEquality().hash(isLoading),
+      const DeepCollectionEquality().hash(errorMesg));
 
   @JsonKey(ignore: true)
   @override
@@ -206,7 +243,9 @@ abstract class _RegisterState implements RegisterState {
       final String number,
       final String recoNumber,
       final String password,
-      final String confirmPass}) = _$RegisterStateImpl;
+      final String confirmPass,
+      final dynamic isLoading,
+      final dynamic errorMesg}) = _$RegisterStateImpl;
 
   @override
   String get email;
@@ -218,6 +257,10 @@ abstract class _RegisterState implements RegisterState {
   String get password;
   @override
   String get confirmPass;
+  @override
+  dynamic get isLoading;
+  @override
+  dynamic get errorMesg;
   @override
   @JsonKey(ignore: true)
   _$$RegisterStateImplCopyWith<_$RegisterStateImpl> get copyWith =>

@@ -31,7 +31,7 @@ class _RegisterThreeState extends State<RegisterThree> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppHeader(),
+            const AppHeader(),
             Text(
               "Profile photo successfully set",
               style: $styles.text.poppins20_500black,
@@ -52,7 +52,7 @@ class _RegisterThreeState extends State<RegisterThree> {
               },
             ),
             SizedBoxHeight15,
-            CustomButtonWithBorderLine(text: "Change Photo")
+            const CustomButtonWithBorderLine(text: "Change Photo")
           ],
         ),
       ),

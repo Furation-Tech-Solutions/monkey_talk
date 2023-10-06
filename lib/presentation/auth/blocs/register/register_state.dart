@@ -8,5 +8,7 @@ class RegisterState with _$RegisterState {
     @Default('') String recoNumber,
     @Default('') String password,
     @Default('') String confirmPass,
+    @Default(false) isLoading,
+    @Default('') errorMesg,
   }) = _RegisterState;
 }

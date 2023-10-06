@@ -20,7 +20,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
             padding: const EdgeInsets.all(14),
             child:
                 Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              AppHeader(),
+              const AppHeader(),
               Text(
                 "Create a strong password",
                 style: $styles.text.poppins20_500black,

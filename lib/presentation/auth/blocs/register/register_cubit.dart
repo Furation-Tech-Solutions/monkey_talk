@@ -1,12 +1,14 @@
 // ignore_for_file: public_member_api_docs, sort_constructors_first
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:injectable/injectable.dart';
 
 import 'package:monkey_talk/domain/auth/usecase/register_user_withEmailPassword_Usecase.dart';
 
 part 'register_cubit.freezed.dart';
 part 'register_state.dart';
 
+@injectable
 class RegisterCubit extends Cubit<RegisterState> {
   RegisterWithEmailAndPasswordUseCase registerWithEmailAndPasswordUseCase;
   RegisterCubit(
@@ -33,5 +35,14 @@ class RegisterCubit extends Cubit<RegisterState> {
     emit(state.copyWith(recoNumber: recoNum));
   }
 
-  registerUser() {}
+  registerUser() async {
+    emit(state.copyWith(isLoading: true, errorMesg: ""));
+    final resp = await registerWithEmailAndPasswordUseCase
+        .call(RegisterParams(email: state.email, password: state.password));
+
+    resp.fold(
+        (l) => emit(state.copyWith(
+            isLoading: false, errorMesg: "Failed : ${l.message}")),
+        (r) => emit(state.copyWith(isLoading: false, errorMesg: "")));
+  }
 }

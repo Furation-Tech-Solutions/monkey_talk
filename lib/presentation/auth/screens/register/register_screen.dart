@@ -1,12 +1,12 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:monkey_talk/core/routes/routes.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart';
 import 'package:monkey_talk/presentation/auth/widgets/appFooter.dart';
 
@@ -33,7 +33,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppHeader(),
+                        const AppHeader(),
                         Text(
                           "Welcome!",
                           style: $styles.text.poppins20_500black,
@@ -51,34 +51,17 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                         ),
                         SizedBoxHeight10,
-                        InternationalPhoneNumberInput(
-                          onInputChanged: (PhoneNumber number) {
-                            print(number.phoneNumber);
-                            if (number.phoneNumber != null
-                                ? number.phoneNumber!.isNotEmpty
-                                : false) {
-                              context.read<RegisterCubit>().updatePhoneNumber(
-                                  number.phoneNumber.toString());
-                            }
-                          },
-                          onInputValidated: (bool value) {
-                            print(value);
-                          },
-                          selectorConfig: SelectorConfig(
-                            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                        IntlPhoneField(
+                          decoration: const InputDecoration(
+                            labelText: 'Phone Number',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(), // here add state
+                            ),
                           ),
-                          ignoreBlank: false,
-                          autoValidateMode: AutovalidateMode.disabled,
-                          selectorTextStyle: TextStyle(color: Colors.black),
-                          initialValue: PhoneNumber(
-                              phoneNumber: "8526694122", isoCode: "IN"),
-                          textFieldController: phoneController,
-                          formatInput: true,
-                          keyboardType: TextInputType.numberWithOptions(
-                              signed: true, decimal: true),
-                          inputBorder: OutlineInputBorder(),
-                          onSaved: (PhoneNumber number) {
-                            print('On Saved: $number');
+                          disableLengthCheck: true,
+                          initialCountryCode: 'IN',
+                          onChanged: (phone) {
+                            debugPrint("phone : $phone");
                           },
                         ),
                         SizedBoxHeight10,
@@ -94,7 +77,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBoxHeight10,
                         CustomTFF(
                             hint: "Create password",
-                            suffixIcon: Icon(Icons.remove_red_eye),
+                            suffixIcon: const Icon(Icons.remove_red_eye),
                             onChanged: (value) {
                               if (value.isNotEmpty) {
                                 context.read<RegisterCubit>().updatePass(value);
@@ -103,7 +86,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBoxHeight10,
                         CustomTFF(
                             hint: "Confirm password",
-                            suffixIcon: Icon(Icons.remove_red_eye),
+                            suffixIcon: const Icon(Icons.remove_red_eye),
                             onChanged: (value) {
                               if (value.isNotEmpty) {
                                 context
@@ -117,9 +100,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           textStyle: $styles.text.poppins14_500white,
                           onTap: () {
                             context.read<RegisterCubit>().registerUser();
+                            router.go(RouteStrings.registerTwo);
                           },
                         ),
-                        AppFooter(),
+                        const AppFooter(),
                         SizedBoxHeight15,
                         Center(
                           child: RichText(

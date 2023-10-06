@@ -30,7 +30,7 @@ class _RegisterTwoState extends State<RegisterTwo> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            AppHeader(),
+            const AppHeader(),
             Text(
               "Set your profile photo",
               style: $styles.text.poppins20_500black,
@@ -43,7 +43,7 @@ class _RegisterTwoState extends State<RegisterTwo> {
               child: CircleAvatar(
                 radius: 52,
                 backgroundColor: $styles.colors.tertiary200,
-                child: Center(
+                child: const Center(
                   child: Icon(
                     Icons.person,
                     size: 24,
