@@ -34,20 +34,23 @@ class _CustomButtonState extends State<CustomButton> {
 
         child: Container(
           decoration: BoxDecoration(
-              // gradient: !widget.isDisabled && widget.isPrimary
-              //     ? const LinearGradient(
-              //         colors: [
-              //           Color(0xFF3A36DB),
-              //           Color(0xFF7C4EF1),
-              //         ],
-              //       )
-              //     : null,
-              borderRadius: BorderRadius.circular(4.0),
-              // border: !widget.isPrimary
-              //     ? Border.all(color: $styles.colors.lavenderBlue)
-              //     : null,
-              // color: widget.isDisabled ? Colors.grey : null,
-              color: $styles.colors.primary200),
+            // gradient: !widget.isDisabled && widget.isPrimary
+            //     ? const LinearGradient(
+            //         colors: [
+            //           Color(0xFF3A36DB),
+            //           Color(0xFF7C4EF1),
+            //         ],
+            //       )
+            //     : null,
+            borderRadius: BorderRadius.circular(4.0),
+            border: widget.isPrimary
+                ? null
+                : Border.all(color: $styles.colors.primary200),
+
+            color: widget.isPrimary
+                ? $styles.colors.primary200
+                : $styles.colors.white,
+          ),
           child: InkWell(
             onHover: (val) {
               setState(() {
@@ -66,11 +69,11 @@ class _CustomButtonState extends State<CustomButton> {
                     )
                   : Text(
                       widget.text,
-                      style:
-                          widget.textStyle ?? $styles.text.poppins14_500white,
-                      // style: widget.isPrimary
-                      // ? $styles.text.lato17_500white
-                      // : $styles.text.lato17_500violet,
+                      // style:
+                      // widget.textStyle ?? $styles.text.poppins14_500white,
+                      style: widget.isPrimary
+                          ? $styles.text.poppins14_500white
+                          : $styles.text.poppins14_500primary200,
                     ),
             ),
           ),

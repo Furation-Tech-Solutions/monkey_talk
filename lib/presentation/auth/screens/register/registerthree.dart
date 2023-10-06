@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
-import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button_withBorderline.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_button_with_borderline.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 import 'package:monkey_talk/presentation/auth/widgets/appHeader.dart';
 import 'package:camera/camera.dart';

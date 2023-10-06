@@ -1,7 +1,6 @@
 // ignore: depend_on_referenced_packages
 import 'package:bloc/bloc.dart';
 import 'package:injectable/injectable.dart';
-
 import '../../../../domain/auth/usecase/forgot_password_usecase.dart';
 import 'forgot_password_state.dart';
 
