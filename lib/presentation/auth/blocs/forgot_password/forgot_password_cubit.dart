@@ -16,7 +16,7 @@ class ForgotpasswordCubit extends Cubit<ForgotPasswordState> {
     emit(state.copyWith(email: email));
   }
 
-    Future<void> forgotpassword() async {
+  Future<void> forgotpassword() async {
     emit(state.copyWith(isLoading: true, errorMessage: ''));
 
     final forgotpasswordResult = await forgotPasswordUsecase.call(
@@ -24,7 +24,6 @@ class ForgotpasswordCubit extends Cubit<ForgotPasswordState> {
         email: state.email,
       ),
     );
-
     forgotpasswordResult.fold(
       (failure) {
         emit(state.copyWith(

@@ -17,6 +17,7 @@ abstract class AuthRemoteDS {
   Future<Either<Failure, UserCredential>> signInWithGoogle();
 
   Future<Either<Failure, UserCredential>> signInWithApple();
+
   Future<Either<Failure, void>> forgotPassword(
     String email,
   );

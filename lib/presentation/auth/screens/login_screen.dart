@@ -48,7 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (uid != null) {
       Future.delayed(Duration.zero, () {
         // Future.delayed is not necessary but prevents console errors
-        router.go(RouteStrings.register);
+        router.go(RouteStrings.homePage);
       });
       return Container();
     } else {
