@@ -20,28 +20,28 @@ import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
     as _i22;
 import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
     as _i23;
-import 'package:monkey_talk/core/logger/applogger.dart' as _i6;
-import 'package:monkey_talk/data/auth/datasources/auth_remote_ds.dart' as _i8;
-import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i10;
-import 'package:monkey_talk/domain/auth/repos/auth_repo.dart' as _i9;
+import 'package:monkey_talk/core/logger/applogger.dart' as _i7;
+import 'package:monkey_talk/data/auth/datasources/auth_remote_ds.dart' as _i9;
+import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i11;
+import 'package:monkey_talk/domain/auth/repos/auth_repo.dart' as _i10;
 import 'package:monkey_talk/domain/auth/usecase/forgot_password_usecase.dart'
-    as _i11;
-import 'package:monkey_talk/domain/auth/usecase/register_user_withEmailPassword_Usecase.dart'
-    as _i13;
-import 'package:monkey_talk/domain/auth/usecase/signin_with_apple_usecase.dart'
-    as _i14;
-import 'package:monkey_talk/domain/auth/usecase/signin_with_email_and_password_usecase.dart'
-    as _i15;
-import 'package:monkey_talk/domain/auth/usecase/signin_with_google_usecase.dart'
-    as _i16;
-import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart'
-    as _i7;
-import 'package:monkey_talk/presentation/auth/blocs/forgot_password/forgot_password_cubit.dart'
     as _i12;
-import 'package:monkey_talk/presentation/auth/blocs/login/login_cubit.dart'
+import 'package:monkey_talk/domain/auth/usecase/register_user_withEmailPassword_Usecase.dart'
+    as _i14;
+import 'package:monkey_talk/domain/auth/usecase/signin_with_apple_usecase.dart'
+    as _i15;
+import 'package:monkey_talk/domain/auth/usecase/signin_with_email_and_password_usecase.dart'
+    as _i16;
+import 'package:monkey_talk/domain/auth/usecase/signin_with_google_usecase.dart'
     as _i17;
-import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart'
+import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart'
+    as _i8;
+import 'package:monkey_talk/presentation/auth/blocs/forgot_password/forgot_password_cubit.dart'
+    as _i13;
+import 'package:monkey_talk/presentation/auth/blocs/login/login_cubit.dart'
     as _i18;
+import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart'
+    as _i6;
 import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart'
     as _i19;
 import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart'
@@ -64,41 +64,40 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i3.FirebaseAuth>(firebaseInjectableModule.firebaseAuth);
     gh.lazySingleton<_i4.HiveInterface>(() => hiveInjectableModule.hive);
     gh.lazySingleton<_i5.Logger>(() => loggerInjectableModule.logger);
-    gh.lazySingleton<_i6.AppLogger>(() => _i6.AppLoggerImpl(gh<_i5.Logger>()));
-    gh.singleton<_i7.AuthCubit>(_i7.AuthCubit(
+    gh.factory<_i6.RegisterCubit>(() => _i6.RegisterCubit());
+    gh.lazySingleton<_i7.AppLogger>(() => _i7.AppLoggerImpl(gh<_i5.Logger>()));
+    gh.singleton<_i8.AuthCubit>(_i8.AuthCubit(
       gh<_i3.FirebaseAuth>(),
       gh<_i4.HiveInterface>(),
-      gh<_i6.AppLogger>(),
+      gh<_i7.AppLogger>(),
     ));
-    gh.lazySingleton<_i8.AuthRemoteDS>(() => _i8.AuthRemoteDSImpl(
+    gh.lazySingleton<_i9.AuthRemoteDS>(() => _i9.AuthRemoteDSImpl(
           gh<_i3.FirebaseAuth>(),
-          gh<_i6.AppLogger>(),
+          gh<_i7.AppLogger>(),
         ));
-    gh.lazySingleton<_i9.AuthRepo>(() => _i10.AuthRepoImpl(
-          remoteDS: gh<_i8.AuthRemoteDS>(),
-          appLogger: gh<_i6.AppLogger>(),
+    gh.lazySingleton<_i10.AuthRepo>(() => _i11.AuthRepoImpl(
+          remoteDS: gh<_i9.AuthRemoteDS>(),
+          appLogger: gh<_i7.AppLogger>(),
         ));
-    gh.lazySingleton<_i11.ForgotPasswordUsecase>(
-        () => _i11.ForgotPasswordUsecase(gh<_i9.AuthRepo>()));
-    gh.factory<_i12.ForgotpasswordCubit>(() => _i12.ForgotpasswordCubit(
-        forgotPasswordUsecase: gh<_i11.ForgotPasswordUsecase>()));
-    gh.lazySingleton<_i13.RegisterWithEmailAndPasswordUseCase>(
-        () => _i13.RegisterWithEmailAndPasswordUseCase(gh<_i9.AuthRepo>()));
-    gh.lazySingleton<_i14.SignInWithAppleUsecase>(
-        () => _i14.SignInWithAppleUsecase(gh<_i9.AuthRepo>()));
-    gh.lazySingleton<_i15.SignInWithEmailAndPasswordUsecase>(
-        () => _i15.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepo>()));
-    gh.lazySingleton<_i16.SignInWithGoogleUsecase>(
-        () => _i16.SignInWithGoogleUsecase(gh<_i9.AuthRepo>()));
-    gh.factory<_i17.LoginCubit>(() => _i17.LoginCubit(
+    gh.lazySingleton<_i12.ForgotPasswordUsecase>(
+        () => _i12.ForgotPasswordUsecase(gh<_i10.AuthRepo>()));
+    gh.factory<_i13.ForgotpasswordCubit>(() => _i13.ForgotpasswordCubit(
+        forgotPasswordUsecase: gh<_i12.ForgotPasswordUsecase>()));
+    gh.lazySingleton<_i14.RegisterWithEmailAndPasswordUseCase>(
+        () => _i14.RegisterWithEmailAndPasswordUseCase(gh<_i10.AuthRepo>()));
+    gh.lazySingleton<_i15.SignInWithAppleUsecase>(
+        () => _i15.SignInWithAppleUsecase(gh<_i10.AuthRepo>()));
+    gh.lazySingleton<_i16.SignInWithEmailAndPasswordUsecase>(
+        () => _i16.SignInWithEmailAndPasswordUsecase(gh<_i10.AuthRepo>()));
+    gh.lazySingleton<_i17.SignInWithGoogleUsecase>(
+        () => _i17.SignInWithGoogleUsecase(gh<_i10.AuthRepo>()));
+    gh.factory<_i18.LoginCubit>(() => _i18.LoginCubit(
         signInWithEmailAndPasswordUsecase:
-            gh<_i15.SignInWithEmailAndPasswordUsecase>()));
-    gh.factory<_i18.RegisterCubit>(() =>
-        _i18.RegisterCubit(gh<_i13.RegisterWithEmailAndPasswordUseCase>()));
+            gh<_i16.SignInWithEmailAndPasswordUsecase>()));
     gh.factory<_i19.SignInWithAppleCubit>(() => _i19.SignInWithAppleCubit(
-        signInWithAppleUsecase: gh<_i14.SignInWithAppleUsecase>()));
+        signInWithAppleUsecase: gh<_i15.SignInWithAppleUsecase>()));
     gh.factory<_i20.SignInWithGoogleCubit>(() => _i20.SignInWithGoogleCubit(
-        signInWithGoogleUsecase: gh<_i16.SignInWithGoogleUsecase>()));
+        signInWithGoogleUsecase: gh<_i17.SignInWithGoogleUsecase>()));
     return this;
   }
 }

@@ -314,6 +314,12 @@
       "languageVersion": "3.0"
     },
     {
+      "name": "formz",
+      "rootUri": "file:///C:/Users/Admin/AppData/Local/Pub/Cache/hosted/pub.dev/formz-0.6.1",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
       "name": "freezed",
       "rootUri": "file:///C:/Users/Admin/AppData/Local/Pub/Cache/hosted/pub.dev/freezed-2.4.3",
       "packageUri": "lib/",
@@ -830,7 +836,7 @@
       "languageVersion": "3.1"
     }
   ],
-  "generated": "2023-10-09T07:24:21.690867Z",
+  "generated": "2023-10-09T08:17:47.838496Z",
   "generator": "pub",
   "generatorVersion": "3.1.2"
 }

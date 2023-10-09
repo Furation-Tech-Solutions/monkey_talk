@@ -1,12 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 import 'package:monkey_talk/presentation/auth/blocs/register/register_state.dart';
-import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
 import 'package:monkey_talk/presentation/auth/widgets/appHeader.dart';
 import 'package:camera/camera.dart';
 
@@ -39,11 +36,13 @@ class _RegisterTwoState extends State<RegisterTwo> {
             const AppHeader(),
             BlocBuilder<RegisterCubit, RegisterState>(
               builder: (context, state) {
-                return state.profileImage == null
-                    ? registerProfilePhotoScreen(
-                        cameraController: cameraController)
-                    : RegisterProfileScreenWithPhoto(
-                        cameraController: cameraController);
+                return registerProfilePhotoScreen(
+                    cameraController: cameraController);
+                // return state.profileImage == null
+                //     ? registerProfilePhotoScreen(
+                //         cameraController: cameraController)
+                //     : RegisterProfileScreenWithPhoto(
+                //         cameraController: cameraController);
               },
             )
           ],
@@ -96,10 +95,10 @@ class registerProfilePhotoScreen extends StatelessWidget {
           text: "Take a photo",
           onTap: () async {
             // router.go(RouteStrings.registerThree);
-            context.read<RegisterCubit>().updateImage(File(
-                await cameraController
-                    .takePicture()
-                    .then((value) => value.path)));
+            // context.read<RegisterCubit>().updateImage(File(
+            //     await cameraController
+            //         .takePicture()
+            //         .then((value) => value.path)));
           },
         ),
       ],

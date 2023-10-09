@@ -3,7 +3,6 @@ import 'package:go_router/go_router.dart';
 import 'package:monkey_talk/presentation/auth/screens/create_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
-import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
 import 'package:monkey_talk/presentation/home/firstHomePage.dart';
 import 'package:monkey_talk/presentation/profile/screens/profile_screen.dart';
@@ -44,7 +43,7 @@ class RouteStrings {
 
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: RouteStrings.profile,
+  initialLocation: RouteStrings.login,
   debugLogDiagnostics: true,
   routes: [
     GoRoute(

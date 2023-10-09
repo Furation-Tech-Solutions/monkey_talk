@@ -22,6 +22,22 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final phoneController = TextEditingController();
+  String selectedGender = '';
+
+  void handleRadioValueChange(String value) {
+    setState(() {
+      selectedGender = value;
+      context.read<RegisterCubit>().genderChanged(value);
+      switch (value) {
+        case 'Male':
+          print('Selected Male');
+          break;
+        case 'Female':
+          print('Selected Female');
+          break;
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (value.isNotEmpty) {
                               context
                                   .read<RegisterCubit>()
-                                  .updateFirstName(value);
+                                  .firstNameChanged(value);
                             }
                           },
                         ),
@@ -60,7 +76,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             if (value.isNotEmpty) {
                               context
                                   .read<RegisterCubit>()
-                                  .updateLastName(value);
+                                  .lastNameChanged(value);
                             }
                           },
                         ),
@@ -69,9 +85,38 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           hint: "Enter your email id",
                           onChanged: (value) {
                             if (value.isNotEmpty) {
-                              context.read<RegisterCubit>().updateEmail(value);
+                              context.read<RegisterCubit>().emailChanged(value);
                             }
                           },
+                        ),
+                        SizedBoxHeight10,
+                        Row(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Radio(
+                                  value: 'Male',
+                                  groupValue: selectedGender,
+                                  onChanged: (value) => handleRadioValueChange(
+                                      value?.toString() ?? "Male"),
+                                ),
+                                Text('Male'),
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Radio(
+                                  value: 'Female',
+                                  groupValue: selectedGender,
+                                  onChanged: (value) => handleRadioValueChange(
+                                      value?.toString() ?? "Female"),
+                                ),
+                                Text('Female'),
+                              ],
+                            ),
+                          ],
                         ),
                         SizedBoxHeight10,
                         IntlPhoneField(
@@ -82,6 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ),
                           disableLengthCheck: true,
+                          keyboardType: TextInputType.number,
                           initialCountryCode: 'IN',
                           onChanged: (phone) {
                             debugPrint("phone : $phone");
@@ -93,20 +139,25 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             suffixIcon: const Icon(Icons.remove_red_eye),
                             onChanged: (value) {
                               if (value.isNotEmpty) {
-                                context.read<RegisterCubit>().updatePass(value);
+                                context
+                                    .read<RegisterCubit>()
+                                    .passwordChanged(value);
                               }
                             }),
                         SizedBoxHeight10,
                         CustomTFF(
-                            hint: "Confirm password",
-                            suffixIcon: const Icon(Icons.remove_red_eye),
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                context
-                                    .read<RegisterCubit>()
-                                    .updateConfirmPass(value);
-                              }
-                            }),
+                          hint: "Confirm password",
+                          suffixIcon: const Icon(Icons.remove_red_eye),
+                          onChanged: (value) {},
+                          validator: (value) {
+                            if (value?.isNotEmpty ?? false) {
+                              return value == state.password
+                                  ? null
+                                  : "Password and Confirm Password doesn't match";
+                            }
+                            return null;
+                          },
+                        ),
                         SizedBoxHeight10,
                         CustomButton(
                           text: "Next",
