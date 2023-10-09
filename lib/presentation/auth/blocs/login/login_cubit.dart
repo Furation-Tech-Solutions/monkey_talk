@@ -56,24 +56,24 @@ class LoginCubit extends Cubit<LoginState> {
     );
   }
 
-  // Future<void> login() async {
-  //   emit(state.copyWith(isLoading: true, errorMessage: ''));
-  //   final signInResult = await signInWithEmailAndPasswordUsecase.call(
-  //     SignInParams(email: state.email, password: state.password),
-  //   );
-  //   signInResult.fold(
-  //     (failure) {
-  //       emit(state.copyWith(
-  //           isLoading: false,
-  //           errorMessage: failure.message ?? 'Sign in failed'));
-  //     },
-  //     (userCredential) {
-  //       emit(state.copyWith(
-  //         isLoading: false,
-  //       ));
-  //     },
-  //   );
-  // }
+  Future<void> login() async {
+    emit(state.copyWith(isLoading: true, errorMessage: ''));
+    final signInResult = await signInWithEmailAndPasswordUsecase.call(
+      SignInParams(email: state.email, password: state.password),
+    );
+    signInResult.fold(
+      (failure) {
+        emit(state.copyWith(
+            isLoading: false,
+            errorMessage: failure.message ?? 'Sign in failed'));
+      },
+      (userCredential) {
+        emit(state.copyWith(
+          isLoading: false,
+        ));
+      },
+    );
+  }
 
   Future<void> login() async {
     if (state.status.isInProgress) {
@@ -85,7 +85,7 @@ class LoginCubit extends Cubit<LoginState> {
     final signInResult = await signInWithEmailAndPasswordUsecase.call(
       SignInParams(email: state.email.value, password: state.password.value),
     );
-    signInResult.fold(
+    signInResult!.fold(
       (Failure failure) => emit(
         state.copyWith(
           status: FormzSubmissionStatus.failure,
