@@ -1,15 +1,16 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 import 'package:monkey_talk/core/routes/routes.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
-import 'package:intl_phone_number_input/intl_phone_number_input.dart';
 import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart';
 import 'package:monkey_talk/presentation/auth/widgets/appFooter.dart';
 
+import '../../blocs/register/register_state.dart';
 import '../../widgets/appHeader.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        AppHeader(),
+                        const AppHeader(),
                         Text(
                           "Welcome!",
                           style: $styles.text.poppins20_500black,
@@ -43,6 +44,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             style: $styles.text.poppins14_400tertiary400),
                         SizedBoxHeight20,
                         CustomTFF(
+                          hint: "Enter your First Name",
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              context
+                                  .read<RegisterCubit>()
+                                  .updateFirstName(value);
+                            }
+                          },
+                        ),
+                        SizedBoxHeight10,
+                        CustomTFF(
+                          hint: "Enter your Last Name",
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              context
+                                  .read<RegisterCubit>()
+                                  .updateLastName(value);
+                            }
+                          },
+                        ),
+                        SizedBoxHeight10,
+                        CustomTFF(
                           hint: "Enter your email id",
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -51,50 +74,23 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           },
                         ),
                         SizedBoxHeight10,
-                        InternationalPhoneNumberInput(
-                          onInputChanged: (PhoneNumber number) {
-                            print(number.phoneNumber);
-                            if (number.phoneNumber != null
-                                ? number.phoneNumber!.isNotEmpty
-                                : false) {
-                              context.read<RegisterCubit>().updatePhoneNumber(
-                                  number.phoneNumber.toString());
-                            }
-                          },
-                          onInputValidated: (bool value) {
-                            print(value);
-                          },
-                          selectorConfig: SelectorConfig(
-                            selectorType: PhoneInputSelectorType.BOTTOM_SHEET,
+                        IntlPhoneField(
+                          decoration: const InputDecoration(
+                            labelText: 'Phone Number',
+                            border: OutlineInputBorder(
+                              borderSide: BorderSide(), // here add state
+                            ),
                           ),
-                          ignoreBlank: false,
-                          autoValidateMode: AutovalidateMode.disabled,
-                          selectorTextStyle: TextStyle(color: Colors.black),
-                          initialValue: PhoneNumber(
-                              phoneNumber: "8526694122", isoCode: "IN"),
-                          textFieldController: phoneController,
-                          formatInput: true,
-                          keyboardType: TextInputType.numberWithOptions(
-                              signed: true, decimal: true),
-                          inputBorder: OutlineInputBorder(),
-                          onSaved: (PhoneNumber number) {
-                            print('On Saved: $number');
+                          disableLengthCheck: true,
+                          initialCountryCode: 'IN',
+                          onChanged: (phone) {
+                            debugPrint("phone : $phone");
                           },
                         ),
                         SizedBoxHeight10,
                         CustomTFF(
-                            hint: "Enter RECO registered number",
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                context
-                                    .read<RegisterCubit>()
-                                    .updateRecoNumber(value);
-                              }
-                            }),
-                        SizedBoxHeight10,
-                        CustomTFF(
                             hint: "Create password",
-                            suffixIcon: Icon(Icons.remove_red_eye),
+                            suffixIcon: const Icon(Icons.remove_red_eye),
                             onChanged: (value) {
                               if (value.isNotEmpty) {
                                 context.read<RegisterCubit>().updatePass(value);
@@ -103,7 +99,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         SizedBoxHeight10,
                         CustomTFF(
                             hint: "Confirm password",
-                            suffixIcon: Icon(Icons.remove_red_eye),
+                            suffixIcon: const Icon(Icons.remove_red_eye),
                             onChanged: (value) {
                               if (value.isNotEmpty) {
                                 context
@@ -116,10 +112,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           text: "Next",
                           textStyle: $styles.text.poppins14_500white,
                           onTap: () {
-                            context.read<RegisterCubit>().registerUser();
+                            // context.read<RegisterCubit>().registerUser();
+                            router.go(RouteStrings.registerTwo);
+                            // router.go('register/registerTwo');
                           },
                         ),
-                        AppFooter(),
+                        const AppFooter(),
                         SizedBoxHeight15,
                         Center(
                           child: RichText(

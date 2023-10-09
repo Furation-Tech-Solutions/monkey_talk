@@ -71,7 +71,7 @@ class LoginPage extends StatelessWidget {
             BlocListener<AuthCubit, AuthState>(
               listener: (context, state) {
                 if (state.isAuthenticated) {
-                  router.go(RouteStrings.register);
+                  router.go(RouteStrings.homePage);
                 }
               },
               child: const SizedBox.shrink(),

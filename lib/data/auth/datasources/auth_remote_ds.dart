@@ -96,6 +96,7 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
     String password,
   ) async {
     try {
+      print("entered in creation of user : ");
       final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
