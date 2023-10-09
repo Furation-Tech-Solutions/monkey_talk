@@ -10,6 +10,7 @@ import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart';
 import 'package:monkey_talk/presentation/auth/widgets/appFooter.dart';
 
+import '../../blocs/register/register_state.dart';
 import '../../widgets/appHeader.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -43,6 +44,28 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             style: $styles.text.poppins14_400tertiary400),
                         SizedBoxHeight20,
                         CustomTFF(
+                          hint: "Enter your First Name",
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              context
+                                  .read<RegisterCubit>()
+                                  .updateFirstName(value);
+                            }
+                          },
+                        ),
+                        SizedBoxHeight10,
+                        CustomTFF(
+                          hint: "Enter your Last Name",
+                          onChanged: (value) {
+                            if (value.isNotEmpty) {
+                              context
+                                  .read<RegisterCubit>()
+                                  .updateLastName(value);
+                            }
+                          },
+                        ),
+                        SizedBoxHeight10,
+                        CustomTFF(
                           hint: "Enter your email id",
                           onChanged: (value) {
                             if (value.isNotEmpty) {
@@ -64,16 +87,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             debugPrint("phone : $phone");
                           },
                         ),
-                        SizedBoxHeight10,
-                        CustomTFF(
-                            hint: "Enter RECO registered number",
-                            onChanged: (value) {
-                              if (value.isNotEmpty) {
-                                context
-                                    .read<RegisterCubit>()
-                                    .updateRecoNumber(value);
-                              }
-                            }),
                         SizedBoxHeight10,
                         CustomTFF(
                             hint: "Create password",
@@ -99,8 +112,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           text: "Next",
                           textStyle: $styles.text.poppins14_500white,
                           onTap: () {
-                            context.read<RegisterCubit>().registerUser();
+                            // context.read<RegisterCubit>().registerUser();
                             router.go(RouteStrings.registerTwo);
+                            // router.go('register/registerTwo');
                           },
                         ),
                         const AppFooter(),

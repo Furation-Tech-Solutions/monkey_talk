@@ -29,8 +29,8 @@ class RouteStrings {
 
   //register
   static const register = '/register';
-  static const registerTwo = '/registerTwo';
-  static const registerThree = '/registerThree';
+  static const registerTwo = '/register/registerTwo';
+  static const registerThree = '/register/registerTwo/registerThree';
 
   // Homepage
   static const homePage = '/homepage';
@@ -63,20 +63,25 @@ final router = GoRouter(
           const CreatePasswordScreen(),
     ),
     GoRoute(
-      path: RouteStrings.register,
-      builder: (BuildContext context, GoRouterState state) =>
-          const RegisterScreen(),
-    ),
-    GoRoute(
-      path: RouteStrings.registerTwo,
-      builder: (BuildContext context, GoRouterState state) =>
-          const RegisterTwo(),
-    ),
-    GoRoute(
-      path: RouteStrings.registerThree,
-      builder: (BuildContext context, GoRouterState state) =>
-          const RegisterThree(),
-    ),
+        path: RouteStrings.register,
+        builder: (BuildContext context, GoRouterState state) =>
+            const RegisterScreen(),
+        routes: [
+          GoRoute(
+            path: 'registerTwo',
+            builder: (BuildContext context, GoRouterState state) {
+              return const RegisterTwo();
+            },
+            // routes: [
+            //   GoRoute(
+            //     path: 'registerThree',
+            //     builder: (BuildContext context, GoRouterState state) =>
+            //         const RegisterThree(),
+            //   ),
+            // ],
+          ),
+        ]),
+
     GoRoute(
       path: RouteStrings.homePage,
       builder: (BuildContext context, GoRouterState state) => const HomePage(),
