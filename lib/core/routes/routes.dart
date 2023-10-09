@@ -44,7 +44,7 @@ class RouteStrings {
 
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: RouteStrings.login,
+  initialLocation: RouteStrings.profile,
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
@@ -92,7 +92,7 @@ final router = GoRouter(
     ),
     GoRoute(
       path: RouteStrings.search,
-      builder: (context, state) => SearchScreen(),
+      builder: (context, state) => const SearchScreen(),
     )
     // GoRoute(
     //     path: RouteStrings.guestList,
