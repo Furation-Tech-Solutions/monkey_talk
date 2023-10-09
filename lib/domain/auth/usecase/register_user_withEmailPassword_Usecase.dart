@@ -4,12 +4,12 @@ import 'package:injectable/injectable.dart';
 
 import '../../../core/error/failures.dart';
 import '../../../core/usecase/usecase_with_either.dart';
-import '../repos/auth_repo.dart';
+import '../repos/auth_repository.dart';
 
 @LazySingleton()
 class RegisterWithEmailAndPasswordUseCase
     implements UsecaseWithEither<UserCredential, RegisterParams> {
-  final AuthRepo authRepo;
+  final AuthRepository authRepo;
 
   RegisterWithEmailAndPasswordUseCase(this.authRepo);
 

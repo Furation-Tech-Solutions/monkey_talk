@@ -1,24 +1,19 @@
-import 'package:dartz/dartz.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
-
-import '../../../core/error/failures.dart';
-import '../../../core/usecase/usecase_with_either.dart';
-import '../repos/auth_repo.dart';
+import 'package:monkey_talk/core/usecase/usecase_with_future.dart';
+import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
+import '../repos/auth_repository.dart';
 
 @LazySingleton()
 class SignInWithEmailAndPasswordUsecase
-    implements UsecaseWithEither<UserCredential, SignInParams> {
-  final AuthRepo authRepo;
+    implements UsecaseWithFuture<UserEntity?, SignInParams> {
+  final AuthRepository authRepo;
 
   SignInWithEmailAndPasswordUsecase(this.authRepo);
 
   @override
-  Future<Either<Failure, UserCredential>> call(SignInParams params) async {
-    return await authRepo.signInWithEmailAndPassoword(
-      email: params.email,
-      password: params.password,
-    );
+  Future<UserEntity?> call(SignInParams signInParams) {
+    return authRepo.signInWithEmailAndPassoword(
+        signInParams.email, signInParams.password);
   }
 }
 

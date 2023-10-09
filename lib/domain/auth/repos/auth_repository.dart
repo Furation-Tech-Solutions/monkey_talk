@@ -1,18 +1,19 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 
 import '../../../core/error/failures.dart';
 
-abstract class AuthRepo {
-  //
-  Future<Either<Failure, UserCredential>> signInWithEmailAndPassoword({
-    required String email,
-    required String password,
-  });
+abstract class AuthRepository {
+  Future<UserEntity?> signInWithEmailAndPassoword(
+    String email,
+    String password,
+  );
 
-//TODO:CREATE USERMODEL(NULLABLE)
-//(IMPLE DEPENDS ON EXT PCKG)
+// TODO:CREATE USERMODEL(NULLABLE)
+// (IMPLE DEPENDS ON EXT PCKG)
   Future<Either<Failure, UserCredential>> signInWithGoogle();
+
   // Future<Either<Failure, void>> signOut();
   Future<Either<Failure, UserCredential>> signInWithApple();
 

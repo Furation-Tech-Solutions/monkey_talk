@@ -21,9 +21,10 @@ import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
 import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
     as _i23;
 import 'package:monkey_talk/core/logger/applogger.dart' as _i6;
-import 'package:monkey_talk/data/auth/datasources/auth_remote_ds.dart' as _i8;
+import 'package:monkey_talk/data/auth/datasources/auth_remote_data_source.dart'
+    as _i8;
 import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i10;
-import 'package:monkey_talk/domain/auth/repos/auth_repo.dart' as _i9;
+import 'package:monkey_talk/domain/auth/repos/auth_repository.dart' as _i9;
 import 'package:monkey_talk/domain/auth/usecase/forgot_password_usecase.dart'
     as _i11;
 import 'package:monkey_talk/domain/auth/usecase/register_user_withEmailPassword_Usecase.dart'
@@ -70,26 +71,27 @@ extension GetItInjectableX on _i1.GetIt {
       gh<_i4.HiveInterface>(),
       gh<_i6.AppLogger>(),
     ));
-    gh.lazySingleton<_i8.AuthRemoteDS>(() => _i8.AuthRemoteDSImpl(
-          gh<_i3.FirebaseAuth>(),
-          gh<_i6.AppLogger>(),
-        ));
-    gh.lazySingleton<_i9.AuthRepo>(() => _i10.AuthRepoImpl(
-          remoteDS: gh<_i8.AuthRemoteDS>(),
+    gh.lazySingleton<_i8.AuthRemoteDataSource>(
+        () => _i8.AuthRemoteDataSourceImpl(
+              gh<_i3.FirebaseAuth>(),
+              gh<_i6.AppLogger>(),
+            ));
+    gh.lazySingleton<_i9.AuthRepository>(() => _i10.AuthRepoImpl(
+          remoteDS: gh<_i8.AuthRemoteDataSource>(),
           appLogger: gh<_i6.AppLogger>(),
         ));
     gh.lazySingleton<_i11.ForgotPasswordUsecase>(
-        () => _i11.ForgotPasswordUsecase(gh<_i9.AuthRepo>()));
+        () => _i11.ForgotPasswordUsecase(gh<_i9.AuthRepository>()));
     gh.factory<_i12.ForgotpasswordCubit>(() => _i12.ForgotpasswordCubit(
         forgotPasswordUsecase: gh<_i11.ForgotPasswordUsecase>()));
-    gh.lazySingleton<_i13.RegisterWithEmailAndPasswordUseCase>(
-        () => _i13.RegisterWithEmailAndPasswordUseCase(gh<_i9.AuthRepo>()));
+    gh.lazySingleton<_i13.RegisterWithEmailAndPasswordUseCase>(() =>
+        _i13.RegisterWithEmailAndPasswordUseCase(gh<_i9.AuthRepository>()));
     gh.lazySingleton<_i14.SignInWithAppleUsecase>(
-        () => _i14.SignInWithAppleUsecase(gh<_i9.AuthRepo>()));
+        () => _i14.SignInWithAppleUsecase(gh<_i9.AuthRepository>()));
     gh.lazySingleton<_i15.SignInWithEmailAndPasswordUsecase>(
-        () => _i15.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepo>()));
+        () => _i15.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepository>()));
     gh.lazySingleton<_i16.SignInWithGoogleUsecase>(
-        () => _i16.SignInWithGoogleUsecase(gh<_i9.AuthRepo>()));
+        () => _i16.SignInWithGoogleUsecase(gh<_i9.AuthRepository>()));
     gh.factory<_i17.LoginCubit>(() => _i17.LoginCubit(
         signInWithEmailAndPasswordUsecase:
             gh<_i15.SignInWithEmailAndPasswordUsecase>()));

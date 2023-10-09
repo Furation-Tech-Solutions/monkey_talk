@@ -4,11 +4,12 @@ import 'package:injectable/injectable.dart';
 
 import '../../../core/error/failures.dart';
 import '../../../core/usecase/usecase_with_either.dart';
-import '../repos/auth_repo.dart';
+import '../repos/auth_repository.dart';
 
 @LazySingleton()
-class SignInWithGoogleUsecase implements UsecaseWithEither<UserCredential, void> {
-  final AuthRepo authRepo;
+class SignInWithGoogleUsecase
+    implements UsecaseWithEither<UserCredential, void> {
+  final AuthRepository authRepo;
 
   SignInWithGoogleUsecase(this.authRepo);
 
