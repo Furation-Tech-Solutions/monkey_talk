@@ -19,26 +19,28 @@ class CustomTFF extends StatelessWidget {
   final Widget? prefixIcon;
   final bool? isHidden;
   final bool? readOnly;
-  const CustomTFF({
-    Key? key,
-    this.hintstyle,
-    this.controller,
-    this.label,
-    this.initialValue,
-    this.hint,
-    this.borderType,
-    this.borderSize = 1,
-    this.borderColor = const Color(0XFFC2C2C2),
-    this.boxHeight,
-    this.onChanged,
-    this.isObscure = false,
-    this.maxLines,
-    this.minLines,
-    this.suffixIcon,
-    this.prefixIcon,
-    this.isHidden,
-    this.readOnly,
-  }) : super(key: key);
+  final String? Function(String?)? validator;
+  const CustomTFF(
+      {Key? key,
+      this.hintstyle,
+      this.controller,
+      this.label,
+      this.initialValue,
+      this.hint,
+      this.borderType,
+      this.borderSize = 1,
+      this.borderColor = const Color(0XFFC2C2C2),
+      this.boxHeight,
+      this.onChanged,
+      this.isObscure = false,
+      this.maxLines,
+      this.minLines,
+      this.suffixIcon,
+      this.prefixIcon,
+      this.isHidden,
+      this.readOnly,
+      this.validator})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +56,7 @@ class CustomTFF extends StatelessWidget {
             fontWeight: FontWeight.w500),
         onChanged: onChanged,
         obscureText: isObscure,
+        validator: validator,
         decoration: InputDecoration(
           prefixIcon: prefixIcon,
           suffixIcon: suffixIcon,

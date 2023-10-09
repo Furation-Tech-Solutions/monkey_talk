@@ -15,12 +15,12 @@ import 'package:hive_flutter/hive_flutter.dart' as _i4;
 import 'package:injectable/injectable.dart' as _i2;
 import 'package:logger/logger.dart' as _i5;
 import 'package:monkey_talk/core/injectable_modules/firebase_injectable_module.dart'
-    as _i21;
+    as _i19;
 import 'package:monkey_talk/core/injectable_modules/hive_injectable_module.dart'
-    as _i22;
+    as _i20;
 import 'package:monkey_talk/core/injectable_modules/logger_injectable_module.dart'
-    as _i23;
-import 'package:monkey_talk/core/logger/applogger.dart' as _i6;
+    as _i21;
+import 'package:monkey_talk/core/logger/applogger.dart' as _i7;
 import 'package:monkey_talk/data/auth/datasources/auth_remote_data_source.dart'
     as _i8;
 import 'package:monkey_talk/data/auth/repo_impl/auth_repo_impl.dart' as _i10;
@@ -35,18 +35,14 @@ import 'package:monkey_talk/domain/auth/usecase/signin_with_email_and_password_u
     as _i15;
 import 'package:monkey_talk/domain/auth/usecase/signin_with_google_usecase.dart'
     as _i16;
-import 'package:monkey_talk/presentation/auth/blocs/auth/auth_cubit.dart'
-    as _i7;
 import 'package:monkey_talk/presentation/auth/blocs/forgot_password/forgot_password_cubit.dart'
     as _i12;
-import 'package:monkey_talk/presentation/auth/blocs/login/login_cubit.dart'
-    as _i17;
 import 'package:monkey_talk/presentation/auth/blocs/register/register_cubit.dart'
-    as _i18;
+    as _i6;
 import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_apple/sign_in_with_apple_cubit.dart'
-    as _i19;
+    as _i17;
 import 'package:monkey_talk/presentation/auth/blocs/sign_in_with_google/sign_in_with_google_cubit.dart'
-    as _i20;
+    as _i18;
 
 extension GetItInjectableX on _i1.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -65,20 +61,17 @@ extension GetItInjectableX on _i1.GetIt {
     gh.singleton<_i3.FirebaseAuth>(firebaseInjectableModule.firebaseAuth);
     gh.lazySingleton<_i4.HiveInterface>(() => hiveInjectableModule.hive);
     gh.lazySingleton<_i5.Logger>(() => loggerInjectableModule.logger);
-    gh.lazySingleton<_i6.AppLogger>(() => _i6.AppLoggerImpl(gh<_i5.Logger>()));
-    gh.singleton<_i7.AuthCubit>(_i7.AuthCubit(
-      gh<_i3.FirebaseAuth>(),
-      gh<_i4.HiveInterface>(),
-      gh<_i6.AppLogger>(),
-    ));
+    gh.factory<_i6.RegisterCubit>(() => _i6.RegisterCubit());
+    gh.lazySingleton<_i7.AppLogger>(() => _i7.AppLoggerImpl(gh<_i5.Logger>()));
     gh.lazySingleton<_i8.AuthRemoteDataSource>(
         () => _i8.AuthRemoteDataSourceImpl(
               gh<_i3.FirebaseAuth>(),
-              gh<_i6.AppLogger>(),
+              gh<_i7.AppLogger>(),
             ));
     gh.lazySingleton<_i9.AuthRepository>(() => _i10.AuthRepoImpl(
           remoteDS: gh<_i8.AuthRemoteDataSource>(),
-          appLogger: gh<_i6.AppLogger>(),
+          appLogger: gh<_i7.AppLogger>(),
+          firebaseAuth: gh<_i3.FirebaseAuth>(),
         ));
     gh.lazySingleton<_i11.ForgotPasswordUsecase>(
         () => _i11.ForgotPasswordUsecase(gh<_i9.AuthRepository>()));
@@ -92,21 +85,16 @@ extension GetItInjectableX on _i1.GetIt {
         () => _i15.SignInWithEmailAndPasswordUsecase(gh<_i9.AuthRepository>()));
     gh.lazySingleton<_i16.SignInWithGoogleUsecase>(
         () => _i16.SignInWithGoogleUsecase(gh<_i9.AuthRepository>()));
-    gh.factory<_i17.LoginCubit>(() => _i17.LoginCubit(
-        signInWithEmailAndPasswordUsecase:
-            gh<_i15.SignInWithEmailAndPasswordUsecase>()));
-    gh.factory<_i18.RegisterCubit>(() =>
-        _i18.RegisterCubit(gh<_i13.RegisterWithEmailAndPasswordUseCase>()));
-    gh.factory<_i19.SignInWithAppleCubit>(() => _i19.SignInWithAppleCubit(
+    gh.factory<_i17.SignInWithAppleCubit>(() => _i17.SignInWithAppleCubit(
         signInWithAppleUsecase: gh<_i14.SignInWithAppleUsecase>()));
-    gh.factory<_i20.SignInWithGoogleCubit>(() => _i20.SignInWithGoogleCubit(
+    gh.factory<_i18.SignInWithGoogleCubit>(() => _i18.SignInWithGoogleCubit(
         signInWithGoogleUsecase: gh<_i16.SignInWithGoogleUsecase>()));
     return this;
   }
 }
 
-class _$FirebaseInjectableModule extends _i21.FirebaseInjectableModule {}
+class _$FirebaseInjectableModule extends _i19.FirebaseInjectableModule {}
 
-class _$HiveInjectableModule extends _i22.HiveInjectableModule {}
+class _$HiveInjectableModule extends _i20.HiveInjectableModule {}
 
-class _$LoggerInjectableModule extends _i23.LoggerInjectableModule {}
+class _$LoggerInjectableModule extends _i21.LoggerInjectableModule {}
