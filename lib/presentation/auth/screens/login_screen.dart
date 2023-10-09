@@ -97,14 +97,15 @@ class LoginPage extends StatelessWidget {
                 )),
             SizedBoxHeight10,
             SizedBox(
-                height: 50,
-                child: CustomTFF(
-                  hint: "Password",
-                  suffixIcon: const Icon(Icons.remove_red_eye_rounded),
-                  onChanged: (value) {
-                    context.read<LoginCubit>().passwordChanged(value);
-                  },
-                )),
+              height: 50,
+              child: CustomTFF(
+                hint: "Password",
+                suffixIcon: const Icon(Icons.remove_red_eye_rounded),
+                onChanged: (value) {
+                  context.read<LoginCubit>().passwordChanged(value);
+                },
+              ),
+            ),
             SizedBoxHeight10,
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -144,7 +145,9 @@ class LoginPage extends StatelessWidget {
             }),
             SizedBoxHeight40,
             const AppFooter(),
-            const Expanded(child: SizedBox()),
+            const Expanded(
+              child: SizedBox(),
+            ),
             Center(
               child: RichText(
                 text: TextSpan(
