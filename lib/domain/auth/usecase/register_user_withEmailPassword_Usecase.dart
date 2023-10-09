@@ -1,6 +1,7 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 
 import '../../../core/error/failures.dart';
 import '../../../core/usecase/usecase_with_either.dart';
@@ -14,7 +15,7 @@ class RegisterWithEmailAndPasswordUseCase
   RegisterWithEmailAndPasswordUseCase(this.authRepo);
 
   @override
-  Future<Either<Failure, UserCredential>> call(RegisterParams params) async {
+  Future<UserEntity?> call(RegisterParams params) async {
     return await authRepo.registerWithEmailAndPassword(
       email: params.email,
       password: params.password,

@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 
 import '../../../core/error/failures.dart';
 
@@ -20,7 +21,7 @@ abstract class AuthRepo {
     required String email,
   });
 
-  Future<Either<Failure, UserCredential>> registerWithEmailAndPassword({
+  Future<UserEntity?> registerWithEmailAndPassword({
     required String email,
     required String password,
   });

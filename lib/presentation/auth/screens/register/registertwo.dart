@@ -21,8 +21,8 @@ class _RegisterTwoState extends State<RegisterTwo> {
 
   @override
   void initState() {
-    initalizeEverything();
     super.initState();
+    initalizeEverything();
   }
 
   @override

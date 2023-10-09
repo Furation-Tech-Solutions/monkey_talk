@@ -3,6 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/logger/applogger.dart';
+import '../../../domain/auth/entities/user_entity.dart';
 import '../../../domain/auth/repos/auth_repo.dart';
 import '../datasources/auth_remote_ds.dart';
 
@@ -40,7 +41,7 @@ class AuthRepoImpl implements AuthRepo {
   }
 
   @override
-  Future<Either<Failure, UserCredential>> registerWithEmailAndPassword(
+  Future<UserEntity?> registerWithEmailAndPassword(
       {required String email, required String password}) async {
     return await remoteDS.registerWithEmailAndPassword(email, password);
   }
