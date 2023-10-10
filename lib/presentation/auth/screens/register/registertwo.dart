@@ -17,12 +17,12 @@ class RegisterTwo extends StatefulWidget {
 }
 
 class _RegisterTwoState extends State<RegisterTwo> {
-  late CameraController cameraController;
+  // late CameraController cameraController;
 
   @override
   void initState() {
     super.initState();
-    initalizeEverything();
+    // initalizeEverything();
   }
 
   @override
@@ -34,28 +34,28 @@ class _RegisterTwoState extends State<RegisterTwo> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const AppHeader(),
-            BlocBuilder<RegisterCubit, RegisterState>(
-              builder: (context, state) {
-                return registerProfilePhotoScreen(
-                    cameraController: cameraController);
-                // return state.profileImage == null
-                //     ? registerProfilePhotoScreen(
-                //         cameraController: cameraController)
-                //     : RegisterProfileScreenWithPhoto(
-                //         cameraController: cameraController);
-              },
-            )
+            // BlocBuilder<RegisterCubit, RegisterState>(
+            //   builder: (context, state) {
+            //     return registerProfilePhotoScreen(
+            //         cameraController: cameraController);
+            //     // return state.profileImage == null
+            //     //     ? registerProfilePhotoScreen(
+            //     //         cameraController: cameraController)
+            //     //     : RegisterProfileScreenWithPhoto(
+            //     //         cameraController: cameraController);
+            //   },
+            // )
           ],
         ),
       ),
     );
   }
 
-  initalizeEverything() async {
-    final cameras = await availableCameras();
-    cameraController = CameraController(cameras[0], ResolutionPreset.medium);
-    await cameraController.initialize();
-  }
+  // initalizeEverything() async {
+  //   final cameras = await availableCameras();
+  //   cameraController = CameraController(cameras[0], ResolutionPreset.medium);
+  //   await cameraController.initialize();
+  // }
 }
 
 class registerProfilePhotoScreen extends StatelessWidget {

@@ -11,8 +11,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import '../../../core/utils.dart/hive_constants.dart';
 import '../../../core/utils.dart/reusable_widgets/custom_button.dart';
-import '../blocs/auth/auth_cubit.dart';
-import '../blocs/auth/auth_state.dart';
 import '../blocs/login/login_cubit.dart';
 import '../blocs/login/login_state.dart';
 
@@ -68,14 +66,14 @@ class LoginPage extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            BlocListener<AuthCubit, AuthState>(
-              listener: (context, state) {
-                if (state.isAuthenticated) {
-                  router.go(RouteStrings.homePage);
-                }
-              },
-              child: const SizedBox.shrink(),
-            ),
+            // BlocListener<AuthCubit, AuthState>(
+            //   listener: (context, state) {
+            //     if (state.isAuthenticated) {
+            //       router.go(RouteStrings.homePage);
+            //     }
+            //   },
+            //   child: const SizedBox.shrink(),
+            // ),
             const AppHeader(),
             Text(
               'Welcome!',
@@ -97,14 +95,15 @@ class LoginPage extends StatelessWidget {
                 )),
             SizedBoxHeight10,
             SizedBox(
-                height: 50,
-                child: CustomTFF(
-                  hint: "Password",
-                  suffixIcon: const Icon(Icons.remove_red_eye_rounded),
-                  onChanged: (value) {
-                    context.read<LoginCubit>().passwordChanged(value);
-                  },
-                )),
+              height: 50,
+              child: CustomTFF(
+                hint: "Password",
+                suffixIcon: const Icon(Icons.remove_red_eye_rounded),
+                onChanged: (value) {
+                  context.read<LoginCubit>().passwordChanged(value);
+                },
+              ),
+            ),
             SizedBoxHeight10,
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
@@ -144,7 +143,9 @@ class LoginPage extends StatelessWidget {
             }),
             SizedBoxHeight40,
             const AppFooter(),
-            const Expanded(child: SizedBox()),
+            const Expanded(
+              child: SizedBox(),
+            ),
             Center(
               child: RichText(
                 text: TextSpan(

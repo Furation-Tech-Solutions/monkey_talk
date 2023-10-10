@@ -6,7 +6,7 @@ import 'login_state.dart';
 @injectable
 class LoginCubit extends Cubit<LoginState> {
   final SignInWithEmailAndPasswordUsecase signInWithEmailAndPasswordUsecase;
-  
+
   LoginCubit({required this.signInWithEmailAndPasswordUsecase})
       : super(const LoginState());
 
@@ -23,19 +23,18 @@ class LoginCubit extends Cubit<LoginState> {
     final signInResult = await signInWithEmailAndPasswordUsecase.call(
       SignInParams(email: state.email, password: state.password),
     );
-    signInResult.fold(
-      (failure) {
-        emit(state.copyWith(
-            isLoading: false,
-            errorMessage: failure.message ?? 'Sign in failed'));
-      },
-      (userCredential) {
-        emit(state.copyWith(
-          isLoading: false,
-        ));
-      },
-    );
+    emit(state.copyWith());
+    // signInResult.fold(
+    //   (failure) {
+    //     emit(state.copyWith(
+    //         isLoading: false,
+    //         errorMessage: failure.message ?? 'Sign in failed'));
+    //   },
+    //   (userCredential) {
+    //     emit(state.copyWith(
+    //       isLoading: false,
+    //     ));
+    //   },
+    // );
   }
-
- 
 }
