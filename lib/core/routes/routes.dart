@@ -3,12 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:monkey_talk/presentation/auth/screens/create_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
-import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
 import 'package:monkey_talk/presentation/home/firstHomePage.dart';
+import 'package:monkey_talk/presentation/profile/screens/block_users_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/bug_reporting_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/edit_profile_screen.dart';
 import 'package:monkey_talk/presentation/profile/screens/profile_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/settings_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/support_screen.dart';
 import 'package:monkey_talk/presentation/search/screens/search_screen.dart';
-
 import '../../presentation/auth/screens/login_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -37,6 +40,7 @@ class RouteStrings {
 
   //profile
   static const profile = '/profile';
+  static const blockUser = '/blockUser';
 
   //search
   static const search = '/search';
@@ -89,11 +93,39 @@ final router = GoRouter(
     GoRoute(
       path: RouteStrings.profile,
       builder: (context, state) => const ProfileScreen(),
+      routes: [
+        GoRoute(
+          path: 'edit',
+          builder: (context, state) => const EditProfileScreen(),
+        ),
+        GoRoute(
+          path: 'settings',
+          builder: (context, state) => const SettingsScreen(),
+          routes: [
+            GoRoute(
+              path: 'blockusers',
+              builder: (context, state) => const BlockedUserScreen(),
+            ),
+            GoRoute(
+              path: 'bugreporting',
+              builder: (context, state) => const BugReportingScreen(),
+            ),
+            GoRoute(
+              path: 'support',
+              builder: (context, state) => const SupportScreen(),
+            ),
+          ],
+        ),
+      ],
+    ),
+    GoRoute(
+      path: RouteStrings.blockUser,
+      builder: (context, state) => const BlockedUserScreen(),
     ),
     GoRoute(
       path: RouteStrings.search,
       builder: (context, state) => const SearchScreen(),
-    )
+    ),
     // GoRoute(
     //     path: RouteStrings.guestList,
     //     builder: (BuildContext context, GoRouterState state) =>

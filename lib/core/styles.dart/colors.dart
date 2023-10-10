@@ -17,6 +17,8 @@ class AppColors {
   final Color tertiary600 = const Color(0xFF555555);
   final Color tertiary900 = const Color(0xFF000000);
 
+//
+  final Color recoBadge = const Color(0xffFEF2EF);
   // White
   final Color white = const Color(0xFFFFFFFF);
 
