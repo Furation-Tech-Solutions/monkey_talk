@@ -5,7 +5,8 @@ import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 import '../../../core/error/failures.dart';
 
 abstract class AuthRepository {
-  Future<UserEntity?> signInWithEmailAndPassoword(
+  
+  Future<Either<Failure,UserEntity?>> signInWithEmailAndPassoword(
     String email,
     String password,
   );

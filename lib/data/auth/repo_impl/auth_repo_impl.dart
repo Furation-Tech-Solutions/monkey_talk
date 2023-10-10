@@ -30,13 +30,14 @@ class AuthRepoImpl implements AuthRepository {
   //   return await remoteDS.signInWithUsernameAndPassword(email, password);
   // }
   @override
-  Future<UserEntity?> signInWithEmailAndPassoword(
+  Future<Either<Failure, UserEntity?>> signInWithEmailAndPassoword(
       String email, String password) async {
     final userCred = await firebaseAuth.signInWithEmailAndPassword(
       email: email,
       password: password,
     );
-    return userFromFirebase(userCred.user);
+    // return userCred;
+    return null;
   }
 
   // @override

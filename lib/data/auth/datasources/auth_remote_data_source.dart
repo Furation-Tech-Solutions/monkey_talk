@@ -6,9 +6,10 @@ import 'package:monkey_talk/main.dart';
 import '../../../core/error/error_mappers.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/logger/applogger.dart';
+import '../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
-  // Future<UserModel> signInWithUsernameAndPassword(
+  // Future<UserModel?> signInWithUsernameAndPassword(
   //   String email,
   //   String password,
   // );

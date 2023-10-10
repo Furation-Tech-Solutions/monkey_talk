@@ -4,34 +4,37 @@ import 'package:monkey_talk/core/utils.dart/validationModels/password.dart';
 
 part of 'login_cubit.dart';
 
-@freezed
-// class LoginState with _$LoginState {
-//   const factory LoginState({
-//     @Default('') String email,
-//     @Default('') String password,
-//     @Default(false) bool isLoading,
-//     @Default('') String errorMessage,
-//   }) = _LoginState;
-// }
-class LoginState extends Equatable {
-  LoginState({
+// @freezed
+final class LoginState extends Equatable {
+  const LoginState({
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.status = FormzSubmissionStatus.initial,
+     this.isValid = false,
+    this.errorMessage,
   });
-  Email email;
-  Password password;
+  final Email email;
+  final Password password;
   final FormzSubmissionStatus status;
+   final bool isValid;
+  final String? errorMessage;
 
   @override
-  List<Object> get props => <Object>[email, password,status];
+  List<Object?> get props => [email, password,status,isValid, errorMessage];
 
-  LoginState copyWith({
+ LoginState copyWith({
     Email? email,
     Password? password,
     FormzSubmissionStatus? status,
+    bool? isValid,
+    String? errorMessage,
   }) {
     return LoginState(
-        email: email ?? this.email, password: password ?? this.password,status: status ?? this.status );
+      email: email ?? this.email,
+      password: password ?? this.password,
+      status: status ?? this.status,
+      isValid: isValid ?? this.isValid,
+      errorMessage: errorMessage ?? this.errorMessage,
+    );
   }
 }
