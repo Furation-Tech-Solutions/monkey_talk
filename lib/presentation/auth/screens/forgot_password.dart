@@ -19,13 +19,13 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
         body: Padding(
       padding: const EdgeInsets.all(14),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        AppHeader(),
+        const AppHeader(),
         Text("Reset Password", style: $styles.text.poppins20_500black),
         SizedBoxHeight10,
         Text("Enter your email linked to your account",
             style: $styles.text.poppins14_400tertiary400),
         SizedBoxHeight30,
-        CustomTFF(
+        const CustomTFF(
           hint: "Enter your email id",
         ),
         SizedBoxHeight30,

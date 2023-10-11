@@ -3,10 +3,15 @@ import 'package:go_router/go_router.dart';
 import 'package:monkey_talk/presentation/auth/screens/create_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
-import 'package:monkey_talk/presentation/auth/screens/register/registerthree.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
 import 'package:monkey_talk/presentation/home/firstHomePage.dart';
-
+import 'package:monkey_talk/presentation/profile/screens/block_users_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/bug_reporting_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/edit_profile_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/profile_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/settings_screen.dart';
+import 'package:monkey_talk/presentation/profile/screens/support_screen.dart';
+import 'package:monkey_talk/presentation/search/screens/search_screen.dart';
 import '../../presentation/auth/screens/login_screen.dart';
 
 final GlobalKey<NavigatorState> rootNavigatorKey =
@@ -27,16 +32,23 @@ class RouteStrings {
 
   //register
   static const register = '/register';
-  static const registerTwo = '/registerTwo';
-  static const registerThree = '/registerThree';
+  static const registerTwo = '/register/registerTwo';
+  static const registerThree = '/register/registerTwo/registerThree';
 
   // Homepage
   static const homePage = '/homepage';
+
+  //profile
+  static const profile = '/profile';
+  static const blockUser = '/blockUser';
+
+  //search
+  static const search = '/search';
 }
 
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: RouteStrings.login,
+  initialLocation: RouteStrings.profile,
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
@@ -55,23 +67,64 @@ final router = GoRouter(
           const CreatePasswordScreen(),
     ),
     GoRoute(
-      path: RouteStrings.register,
-      builder: (BuildContext context, GoRouterState state) =>
-          const RegisterScreen(),
-    ),
-    GoRoute(
-      path: RouteStrings.registerTwo,
-      builder: (BuildContext context, GoRouterState state) =>
-          const RegisterTwo(),
-    ),
-    GoRoute(
-      path: RouteStrings.registerThree,
-      builder: (BuildContext context, GoRouterState state) =>
-          const RegisterThree(),
-    ),
+        path: RouteStrings.register,
+        builder: (BuildContext context, GoRouterState state) =>
+            const RegisterScreen(),
+        routes: [
+          GoRoute(
+            path: 'registerTwo',
+            builder: (BuildContext context, GoRouterState state) {
+              return const RegisterTwo();
+            },
+            // routes: [
+            //   GoRoute(
+            //     path: 'registerThree',
+            //     builder: (BuildContext context, GoRouterState state) =>
+            //         const RegisterThree(),
+            //   ),
+            // ],
+          ),
+        ]),
+
     GoRoute(
       path: RouteStrings.homePage,
       builder: (BuildContext context, GoRouterState state) => const HomePage(),
+    ),
+    GoRoute(
+      path: RouteStrings.profile,
+      builder: (context, state) => const ProfileScreen(),
+      routes: [
+        GoRoute(
+          path: 'edit',
+          builder: (context, state) => const EditProfileScreen(),
+        ),
+        GoRoute(
+          path: 'settings',
+          builder: (context, state) => const SettingsScreen(),
+          routes: [
+            GoRoute(
+              path: 'blockusers',
+              builder: (context, state) => const BlockedUserScreen(),
+            ),
+            GoRoute(
+              path: 'bugreporting',
+              builder: (context, state) => const BugReportingScreen(),
+            ),
+            GoRoute(
+              path: 'support',
+              builder: (context, state) => const SupportScreen(),
+            ),
+          ],
+        ),
+      ],
+    ),
+    GoRoute(
+      path: RouteStrings.blockUser,
+      builder: (context, state) => const BlockedUserScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.search,
+      builder: (context, state) => const SearchScreen(),
     ),
     // GoRoute(
     //     path: RouteStrings.guestList,

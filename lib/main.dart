@@ -49,9 +49,9 @@ class MainApp extends StatelessWidget {
         BlocProvider(create: (context) => di<SignInWithGoogleCubit>()),
         BlocProvider(create: (context) => di<ForgotpasswordCubit>()),
         BlocProvider(create: (context) => di<RegisterCubit>()),
-         BlocProvider(create: (context) => di<SignInWithAppleCubit>()),
+        BlocProvider(create: (context) => di<SignInWithAppleCubit>()),
       ],
       child: const MyApp(),
     );
-  }
+  } 
 }

@@ -17,6 +17,10 @@ abstract class AuthRemoteDS {
   Future<Either<Failure, UserCredential>> signInWithGoogle();
 
   Future<Either<Failure, UserCredential>> signInWithApple();
+
+//TODO: only void will be returned
+//TODO:remote ds 
+//TODO:DOMAIN SHOULD NOT BE DEPENDENT ON EXTERNAL PACKAGE
   Future<Either<Failure, void>> forgotPassword(
     String email,
   );
@@ -92,6 +96,7 @@ class AuthRemoteDSImpl implements AuthRemoteDS {
     String password,
   ) async {
     try {
+      print("entered in creation of user : ");
       final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
