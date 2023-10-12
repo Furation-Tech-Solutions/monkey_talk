@@ -28,7 +28,7 @@ class RegisterProfileScreenWithPhoto extends StatelessWidget {
           child: CircleAvatar(
               radius: 52,
               backgroundColor: $styles.colors.tertiary200,
-              child: SvgPicture.asset('assets/images/personImage.svg')),
+              child: SvgPicture.asset('assets/icons/personImage.svg')),
         ),
         SizedBoxHeight50,
         CustomButton(

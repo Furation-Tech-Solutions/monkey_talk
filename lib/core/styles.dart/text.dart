@@ -54,6 +54,9 @@ class Texts {
 
   late final TextStyle poppins16_500tertiary900 = _createFont(poppins,
       sizePx: 16, weight: FontWeight.w500, color: $styles.colors.tertiary900);
+
+  late final TextStyle poppins16_500black = _createFont(poppins,
+      sizePx: 16, weight: FontWeight.w500, color: $styles.colors.black);
 // 20
   late final TextStyle poppins20_500black = _createFont(poppins,
       sizePx: 20, weight: FontWeight.w500, color: $styles.colors.black);
@@ -64,8 +67,6 @@ class Texts {
   //LATO
   late final TextStyle lato14_400tertiary600 = _createFont(lato,
       sizePx: 14, weight: FontWeight.w400, color: $styles.colors.tertiary600);
-
-  
 
   TextStyle _createFont(TextStyle style,
       {required double sizePx,

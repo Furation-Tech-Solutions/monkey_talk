@@ -5,6 +5,9 @@ import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dar
 import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
 import 'package:monkey_talk/presentation/home/screens/home_screen.dart';
+import 'package:monkey_talk/presentation/home/widgets/add_post_screen.dart';
+import 'package:monkey_talk/presentation/home/widgets/post_jobs_screen.dart';
+import 'package:monkey_talk/presentation/home/widgets/post_request_details_screen.dart';
 import 'package:monkey_talk/presentation/profile/screens/block_users_screen.dart';
 import 'package:monkey_talk/presentation/profile/screens/bug_reporting_screen.dart';
 import 'package:monkey_talk/presentation/profile/screens/edit_profile_screen.dart';
@@ -36,6 +39,8 @@ class RouteStrings {
 
   // Homepage
   static const homePage = '/homepage';
+  static const addPostScreen = '/addPosts';
+  static const postJobs = '/postJobs';
 
   //profile
   static const profile = '/profile';
@@ -46,7 +51,7 @@ class RouteStrings {
 
 final router = GoRouter(
   navigatorKey: rootNavigatorKey,
-  initialLocation: RouteStrings.homePage,
+  initialLocation: RouteStrings.addPostScreen,
   debugLogDiagnostics: true,
   routes: [
     GoRoute(
@@ -74,20 +79,18 @@ final router = GoRouter(
             builder: (BuildContext context, GoRouterState state) {
               return const RegisterTwo();
             },
-            // routes: [
-            //   GoRoute(
-            //     path: 'registerThree',
-            //     builder: (BuildContext context, GoRouterState state) =>
-            //         const RegisterThree(),
-            //   ),
-            // ],
           ),
         ]),
     GoRoute(
-      path: RouteStrings.homePage,
-      builder: (BuildContext context, GoRouterState state) =>
-          const HomeScreen(),
-    ),
+        path: RouteStrings.homePage,
+        builder: (BuildContext context, GoRouterState state) =>
+            const HomeScreen(),
+        routes: [
+          GoRoute(
+            path: 'request_details',
+            builder: (context, state) => const PostRequestDetailsScreen(),
+          ),
+        ]),
     GoRoute(
       path: RouteStrings.profile,
       builder: (context, state) => const ProfileScreen(),
@@ -119,6 +122,14 @@ final router = GoRouter(
     GoRoute(
       path: RouteStrings.search,
       builder: (context, state) => const SearchScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.postJobs,
+      builder: (context, state) => const PostJobsScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.addPostScreen,
+      builder: (context, state) => const AddPostScreen(),
     ),
   ],
 );

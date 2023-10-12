@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:monkey_talk/presentation/home/screens/message_screen.dart';
 import 'package:monkey_talk/presentation/home/screens/request_screen.dart';
 import 'package:monkey_talk/presentation/home/widgets/home_view.dart';
@@ -32,11 +33,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return SafeArea(
       child: Scaffold(
         bottomNavigationBar: BottomNavigationBar(
+          
           showSelectedLabels: false,
           showUnselectedLabels: false,
           elevation: 0,
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.black,
+          selectedItemColor: $styles.colors.primary200,
           iconSize: 40,
           onTap: _onItemTapped,
           selectedIconTheme: IconThemeData(
@@ -45,25 +47,24 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: $styles.colors.white,
           items: <BottomNavigationBarItem>[
             BottomNavigationBarItem(
-              icon: Icon(
-                Icons.home_outlined,
-                color: $styles.colors.tertiary400,
+              icon: SvgPicture.asset(
+                'assets/icons/home.svg',
+                color: $styles.colors.primary200,
               ),
               label: '',
             ),
             BottomNavigationBarItem(
-              icon:
-                  Icon(Icons.person_rounded, color: $styles.colors.tertiary400),
+              icon: SvgPicture.asset('assets/icons/person.svg'),
               label: '',
             ),
             BottomNavigationBarItem(
               // selectedIcon: Icon(Icons.message),
-              icon: Icon(Icons.message, color: $styles.colors.tertiary400),
+              icon: SvgPicture.asset('assets/icons/message.svg'),
               label: '',
             ),
             BottomNavigationBarItem(
               // selectedIcon: Icon(Icons.person_pin),
-              icon: Icon(Icons.person_pin, color: $styles.colors.tertiary400),
+              icon: SvgPicture.asset('assets/icons/profile.svg'),
               label: '',
             ),
           ],
