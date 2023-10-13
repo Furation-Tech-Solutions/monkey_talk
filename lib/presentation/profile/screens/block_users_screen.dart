@@ -43,7 +43,8 @@ class BlockedUserScreen extends StatelessWidget {
                           height: 29,
                           child: CustomButton(
                             text: 'Unblock',
-                            textStyle: TextStyle(color: $styles.colors.black),
+                            textStyle:
+                                TextStyle(color: $styles.colors.tertiary900),
                             isPrimary: false,
                           ),
                         ),

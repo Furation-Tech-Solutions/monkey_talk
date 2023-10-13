@@ -37,7 +37,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         const AppHeader(),
                         Text(
                           "Welcome!",
-                          style: $styles.text.poppins20_500black,
+                          style: $styles.text.poppins20_500tertiary900,
                         ),
                         SizedBoxHeight10,
                         Text("Register using your email and password",

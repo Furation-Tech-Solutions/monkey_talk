@@ -23,7 +23,7 @@ class _CreatePasswordScreenState extends State<CreatePasswordScreen> {
               const AppHeader(),
               Text(
                 "Create a strong password",
-                style: $styles.text.poppins20_500black,
+                style: $styles.text.poppins20_500tertiary900,
               ),
               SizedBoxHeight10,
               Text("Password should be at least 8 characters",

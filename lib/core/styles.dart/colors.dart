@@ -19,15 +19,15 @@ class AppColors {
 
 //
   final Color recoBadge = const Color(0xffFEF2EF);
-  // White
-  final Color white = const Color(0xFFFFFFFF);
 
-  //Black
-  final Color black = const Color(0xFF000000);
+  final Color white = const Color(0xFFFFFFFF);
 
   //Grey
   final Color grey = const Color(0xFFDBDBDB);
   final Color grey5 = const Color(0xFF6F6F6F);
+
+  //Secondary
+  final Color secondary600 = const Color(0xFF1D3461);
 
   //Primary/200
   final Color primary200 = const Color(0xFFF17E5B);

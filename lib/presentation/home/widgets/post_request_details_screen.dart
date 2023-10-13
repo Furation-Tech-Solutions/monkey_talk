@@ -121,7 +121,7 @@ class _PostRequestDetailsScreenState extends State<PostRequestDetailsScreen> {
                 SizedBoxHeight20,
                 Text(
                   'Details',
-                  style: $styles.text.poppins16_500black,
+                  style: $styles.text.poppins16_500tertiary900,
                 ),
                 SizedBoxHeight15,
                 const Text(
@@ -142,16 +142,17 @@ class _PostRequestDetailsScreenState extends State<PostRequestDetailsScreen> {
                           ),
                           SizedBoxWidth15,
                           Expanded(
-                              child: CustomButton(
-                            text: 'Apply',
-                            onTap: () {
-                              setState(() {
-                                isApplied = true;
-                              });
-                            },
-                          ))
+                            child: CustomButton(
+                              text: 'Apply',
+                              onTap: () {
+                                setState(() {
+                                  isApplied = true;
+                                });
+                              },
+                            ),
+                          ),
                         ],
-                      )
+                      ),
               ],
             ),
           )),

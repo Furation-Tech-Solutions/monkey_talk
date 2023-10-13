@@ -58,12 +58,10 @@ class _HomeScreenState extends State<HomeScreen> {
               label: '',
             ),
             BottomNavigationBarItem(
-              // selectedIcon: Icon(Icons.message),
               icon: SvgPicture.asset('assets/icons/message.svg'),
               label: '',
             ),
             BottomNavigationBarItem(
-              // selectedIcon: Icon(Icons.person_pin),
               icon: SvgPicture.asset('assets/icons/profile.svg'),
               label: '',
             ),

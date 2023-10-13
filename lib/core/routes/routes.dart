@@ -4,8 +4,12 @@ import 'package:monkey_talk/presentation/auth/screens/create_password_screen.dar
 import 'package:monkey_talk/presentation/auth/screens/forgot_password_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/register_screen.dart';
 import 'package:monkey_talk/presentation/auth/screens/register/registertwo.dart';
+import 'package:monkey_talk/presentation/home/screens/connection_requests_screen.dart';
 import 'package:monkey_talk/presentation/home/screens/home_screen.dart';
+import 'package:monkey_talk/presentation/home/screens/notifications_screen.dart';
+import 'package:monkey_talk/presentation/home/screens/upcoming_tasks_screen.dart';
 import 'package:monkey_talk/presentation/home/widgets/add_post_screen.dart';
+import 'package:monkey_talk/presentation/home/widgets/feedback_screen.dart';
 import 'package:monkey_talk/presentation/home/widgets/post_jobs_screen.dart';
 import 'package:monkey_talk/presentation/home/widgets/post_request_details_screen.dart';
 import 'package:monkey_talk/presentation/profile/screens/block_users_screen.dart';
@@ -39,14 +43,18 @@ class RouteStrings {
 
   // Homepage
   static const homePage = '/homepage';
-  static const addPostScreen = '/addPosts';
-  static const postJobs = '/postJobs';
 
   //profile
   static const profile = '/profile';
 
   //search
   static const search = '/search';
+
+//////
+  //feedback
+  static const feedback = '/feedback';
+  static const addPostScreen = '/addPosts';
+  static const postJobs = '/postJobs';
 }
 
 final router = GoRouter(
@@ -87,8 +95,22 @@ final router = GoRouter(
             const HomeScreen(),
         routes: [
           GoRoute(
-            path: 'request_details',
+            path: 'postrequestdetails',
             builder: (context, state) => const PostRequestDetailsScreen(),
+          ),
+          GoRoute(
+            path: 'notifications',
+            builder: (context, state) => const NotificationsScreen(),
+            routes: [
+              GoRoute(
+                path: 'connectionrequest',
+                builder: (context, state) => const ConnectionRequestsScreen(),
+              ),
+            ],
+          ),
+          GoRoute(
+            path: 'upcomingtasks',
+            builder: (context, state) => const UpComingTasksScreen(),
           ),
         ]),
     GoRoute(
@@ -123,6 +145,8 @@ final router = GoRouter(
       path: RouteStrings.search,
       builder: (context, state) => const SearchScreen(),
     ),
+
+    ////////
     GoRoute(
       path: RouteStrings.postJobs,
       builder: (context, state) => const PostJobsScreen(),
@@ -130,6 +154,14 @@ final router = GoRouter(
     GoRoute(
       path: RouteStrings.addPostScreen,
       builder: (context, state) => const AddPostScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.feedback,
+      builder: (context, state) => const FeedbackScreen(),
+    ),
+    GoRoute(
+      path: RouteStrings.feedback,
+      builder: (context, state) => const FeedbackScreen(),
     ),
   ],
 );

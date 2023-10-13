@@ -29,7 +29,7 @@ class _ForgotPasswordScreenState extends State<ForgotPasswordScreen> {
               child: SvgPicture.asset('assets/images/agentRider.svg'),
             ),
             SizedBoxHeight60,
-            Text("Reset Password", style: $styles.text.poppins20_500black),
+            Text("Reset Password", style: $styles.text.poppins20_500tertiary900),
             SizedBoxHeight10,
             Text("Enter your email linked to your account",
                 style: $styles.text.poppins14_400tertiary400),

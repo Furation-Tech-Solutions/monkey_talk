@@ -20,7 +20,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
       padding: const EdgeInsets.all(14),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         const AppHeader(),
-        Text("Reset Password", style: $styles.text.poppins20_500black),
+        Text("Reset Password", style: $styles.text.poppins20_500tertiary900),
         SizedBoxHeight10,
         Text("Enter your email linked to your account",
             style: $styles.text.poppins14_400tertiary400),
@@ -50,7 +50,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
               title: Text(
                 "Email Sent",
                 textAlign: TextAlign.center,
-                style: $styles.text.poppins14_500black,
+                style: $styles.text.poppins14_500tertiary900,
               ),
             ),
           ),

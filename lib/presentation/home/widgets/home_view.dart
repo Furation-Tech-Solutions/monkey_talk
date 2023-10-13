@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:go_router/go_router.dart';
 import 'package:monkey_talk/core/styles.dart/stylekit.dart';
+import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_Button.dart';
 import 'package:monkey_talk/core/utils.dart/reusable_widgets/custom_tff.dart';
 import 'package:monkey_talk/core/utils.dart/sized_boxes.dart';
 
@@ -47,10 +49,15 @@ class _HomeViewState extends State<HomeView> {
                         ],
                       ),
                       SizedBoxWidth15,
-                      CircleAvatar(
-                        radius: 21,
-                        backgroundColor: $styles.colors.primary200,
-                        child: const Icon(Icons.notifications_active),
+                      GestureDetector(
+                        onTap: () {
+                          context.go('${RouteStrings.homePage}/notifications');
+                        },
+                        child: CircleAvatar(
+                          radius: 21,
+                          backgroundColor: $styles.colors.primary200,
+                          child: const Icon(Icons.notifications_active),
+                        ),
                       ),
                     ],
                   ),
@@ -103,51 +110,265 @@ class _HomeViewState extends State<HomeView> {
                             "Upcoming Tasks (3)",
                             style: $styles.text.poppins16_500tertiary900,
                           ),
-                          Text(
-                            "View All",
-                            style: $styles.text.poppins12_500primary200,
+                          GestureDetector(
+                            onTap: () {
+                              router
+                                  .go('${RouteStrings.homePage}/upcomingtasks');
+                            },
+                            child: Text(
+                              "View All",
+                              style: $styles.text.poppins12_500primary200,
+                            ),
                           )
                         ],
                       ),
                       SizedBoxHeight10,
                       SizedBox(
                         height: 110,
-                        child: ListView.builder(
+                        child: ListView.separated(
+                          separatorBuilder: (context, index) {
+                            return SizedBoxWidth10;
+                          },
                           shrinkWrap: true,
                           scrollDirection: Axis.horizontal,
                           itemCount: 4,
                           itemBuilder: (context, index) {
-                            return SizedBox(
-                              width: 220,
-                              child: Container(
-                                padding: const EdgeInsets.all(10),
-                                // shape: RoundedRectangleBorder(),
-                                decoration: BoxDecoration(
-                                  color: $styles.colors.background,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(15) //
+                            return GestureDetector(
+                              onTap: () {
+                                showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        content: SizedBox(
+                                          width: double.infinity,
+                                          child: SingleChildScrollView(
+                                            child: Column(
+                                              crossAxisAlignment:
+                                                  CrossAxisAlignment.start,
+                                              mainAxisSize: MainAxisSize.min,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                      "assets/icons/clock.svg",
+                                                    ),
+                                                    SizedBoxWidth8,
+                                                    const Text(
+                                                        '11:00 AM - 12:00 PM')
+                                                  ],
+                                                ),
+                                                SizedBoxHeight8,
+                                                const Text(
+                                                    'Presentation of the house in the Forest valley.'),
+                                                SizedBoxHeight30,
+                                                Container(
+                                                  decoration: BoxDecoration(
+                                                    color: $styles
+                                                        .colors.background,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            10),
+                                                  ),
+                                                  padding:
+                                                      const EdgeInsets.all(10),
+                                                  child: Column(
+                                                    children: [
+                                                      SizedBoxHeight10,
+                                                      Row(
+                                                        children: [
+                                                          const CircleAvatar(
+                                                            radius: 30,
+                                                          ),
+                                                          SizedBoxWidth8,
+                                                          Column(
+                                                            crossAxisAlignment:
+                                                                CrossAxisAlignment
+                                                                    .start,
+                                                            children: [
+                                                              Text(
+                                                                'Jordan Taylor',
+                                                                style: $styles
+                                                                    .text
+                                                                    .poppins16_500tertiary900,
+                                                              ),
+                                                              Text(
+                                                                'Male - Canada/Ontario',
+                                                                style: $styles
+                                                                    .text
+                                                                    .poppins12_400tertiary400,
+                                                              )
+                                                            ],
+                                                          )
+                                                        ],
+                                                      ),
+                                                      SizedBoxHeight15,
+                                                      const Text(
+                                                        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt.',
+                                                        softWrap: true,
+                                                        // maxLines: 2,
+                                                      ),
+                                                      SizedBoxHeight20,
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            'assets/icons/clock.svg',
+                                                            color: $styles
+                                                                .colors
+                                                                .tertiary600,
+                                                          ),
+                                                          SizedBoxWidth10,
+                                                          Expanded(
+                                                            child: Text(
+                                                              "20th September 2023 at 11:00 AM",
+                                                              style: $styles
+                                                                  .text
+                                                                  .poppins12_400tertiary900,
+                                                            ),
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBoxHeight15,
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            'assets/icons/location.svg',
+                                                            color: $styles
+                                                                .colors
+                                                                .tertiary600,
+                                                          ),
+                                                          SizedBoxWidth10,
+                                                          Text(
+                                                            "200 Albert St, S4R 2N4",
+                                                            style: $styles.text
+                                                                .poppins12_400tertiary900,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBoxHeight15,
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            'assets/icons/call.svg',
+                                                            color: $styles
+                                                                .colors
+                                                                .tertiary600,
+                                                          ),
+                                                          SizedBoxWidth10,
+                                                          Text(
+                                                            "+1 222 222 22222",
+                                                            style: $styles.text
+                                                                .poppins12_400tertiary900,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBoxHeight15,
+                                                      Row(
+                                                        children: [
+                                                          SvgPicture.asset(
+                                                            'assets/icons/mail.svg',
+                                                            color: $styles
+                                                                .colors
+                                                                .tertiary600,
+                                                          ),
+                                                          SizedBoxWidth10,
+                                                          Text(
+                                                            "jobowner@owner.com",
+                                                            style: $styles.text
+                                                                .poppins12_400tertiary900,
+                                                          ),
+                                                        ],
+                                                      ),
+                                                      SizedBoxHeight15,
+                                                    ],
+                                                  ),
+                                                ),
+                                                SizedBoxHeight15,
+                                                const SizedBox(
+                                                  height: 40,
+                                                  child: CustomButton(
+                                                      text: 'Call Client'),
+                                                ),
+                                                SizedBoxHeight12,
+                                                const SizedBox(
+                                                  height: 40,
+                                                  child: CustomButton(
+                                                      text: 'Call Job Owner'),
+                                                ),
+                                                SizedBoxHeight12,
+                                                const SizedBox(
+                                                  height: 40,
+                                                  child: CustomButton(
+                                                      text:
+                                                          'Message Job Owner'),
+                                                ),
+                                                SizedBoxHeight12,
+                                                // const SizedBox(
+                                                //   height: 40,
+                                                //   child: CustomButton(
+                                                //     text: 'Decline',
+                                                //     isPrimary: false,
+                                                //   ),
+                                                // ),
+                                                const SizedBox(
+                                                  height: 40,
+                                                  child: CustomButton(
+                                                    text: 'Mark as Completed',
+                                                    isPrimary: false,
+                                                  ),
+                                                ),
+                                                SizedBoxHeight10,
+                                                Row(
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                      'assets/icons/info_color.svg',
+                                                    ),
+                                                    SizedBoxWidth10,
+                                                    Text(
+                                                      'Task can be declined before 5 hours',
+                                                      style: $styles.text
+                                                          .poppins12_400secondary600,
+                                                    )
+                                                  ],
+                                                )
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      );
+                                    });
+                              },
+                              child: SizedBox(
+                                width: 220,
+                                child: Container(
+                                  padding: const EdgeInsets.all(10),
+                                  // shape: RoundedRectangleBorder(),
+                                  decoration: BoxDecoration(
+                                    color: $styles.colors.background,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(15) //
+                                        ),
+                                  ),
+                                  child: Column(
+                                    children: [
+                                      Row(
+                                        children: [
+                                          const Icon(Icons.timer_outlined),
+                                          SizedBoxWidth10,
+                                          Text(
+                                            "11:00 AM - 12:00 PM",
+                                            style: $styles
+                                                .text.poppins12_400tertiary900,
+                                          )
+                                        ],
                                       ),
-                                ),
-                                child: Column(
-                                  children: [
-                                    Row(
-                                      children: [
-                                        const Icon(Icons.timer_outlined),
-                                        SizedBoxWidth10,
-                                        Text(
-                                          "11:00 AM - 12:00 PM",
-                                          style: $styles
-                                              .text.poppins12_400tertiary900,
-                                        )
-                                      ],
-                                    ),
-                                    SizedBoxHeight15,
-                                    Text(
-                                      "Presentation of the house in the Forest valley",
-                                      style:
-                                          $styles.text.poppins14_400tertiary900,
-                                    ),
-                                  ],
+                                      SizedBoxHeight15,
+                                      Text(
+                                        "Presentation of the house in the Forest valley",
+                                        style: $styles
+                                            .text.poppins14_400tertiary900,
+                                      ),
+                                    ],
+                                  ),
                                 ),
                               ),
                             );
@@ -167,7 +388,7 @@ class _HomeViewState extends State<HomeView> {
                           return GestureDetector(
                             onTap: () {
                               router.go(
-                                  '${RouteStrings.homePage}/request_details');
+                                  '${RouteStrings.homePage}/postrequestdetails');
                             },
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
