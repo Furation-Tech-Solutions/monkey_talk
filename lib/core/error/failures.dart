@@ -51,18 +51,6 @@ class NoInternetConnectionFailure extends Failure {
   const NoInternetConnectionFailure([String? message]) : super(message);
 }
 
-/// [BetterLuckNextTimeFailure] is thrown when there's
-/// insufficient funds error from ICICI Composite API.
-class BetterLuckNextTimeFailure extends Failure {
-  const BetterLuckNextTimeFailure([String? message]) : super(message);
-}
-
-/// [InvalidUPIIDFailure] is thrown when there's
-/// invalid UPI ID from ICICI Composite API.
-class InvalidUPIIDFailure extends Failure {
-  const InvalidUPIIDFailure([String? message]) : super(message);
-}
-
 // Additional custom Failure classes to cover more DioExceptions
 class NetworkTimeoutFailure extends Failure {
   const NetworkTimeoutFailure([String? message]) : super(message);
@@ -119,3 +107,11 @@ class InvalidEmailFailure extends Failure {
 class WeakPasswordFailure extends Failure {
   const WeakPasswordFailure([String? message]) : super(message);
 }
+
+class LogInWithEmailAndPasswordInvalidEmailFailure extends Failure {}
+
+class LogInWithEmailAndPasswordUserDisabledFailure extends Failure {}
+
+class LogInWithEmailAndPasswordUserNotFoundFailure extends Failure {}
+
+class LogInWithEmailAndPasswordWrongPasswordFailure extends Failure {}

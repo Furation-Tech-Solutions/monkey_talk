@@ -53,5 +53,5 @@ class MainApp extends StatelessWidget {
       ],
       child: const MyApp(),
     );
-  } 
+  }
 }

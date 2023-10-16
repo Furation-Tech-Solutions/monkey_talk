@@ -5,14 +5,15 @@ import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 import '../../../core/error/failures.dart';
 
 abstract class AuthRepository {
-  
-  Future<Either<Failure,UserEntity?>> signInWithEmailAndPassoword(
+  Future<Either<Failure, UserEntity?>> signInWithEmailAndPassoword(
     String email,
     String password,
   );
 
-// TODO:CREATE USERMODEL(NULLABLE)
-// (IMPLE DEPENDS ON EXT PCKG)
+  // Future<Either<Failure, void>> signOut();
+
+// // TODO:CREATE USERMODEL(NULLABLE)
+// // (IMPLE DEPENDS ON EXT PCKG)
   Future<Either<Failure, UserCredential>> signInWithGoogle();
 
   // Future<Either<Failure, void>> signOut();

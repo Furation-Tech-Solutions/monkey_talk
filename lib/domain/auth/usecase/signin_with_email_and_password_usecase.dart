@@ -8,13 +8,14 @@ import '../repos/auth_repository.dart';
 @LazySingleton()
 class SignInWithEmailAndPasswordUsecase
     implements UsecaseWithEither<UserEntity?, SignInParams> {
-  final AuthRepository authRepo;
+  final AuthRepository authRepository;
 
-  SignInWithEmailAndPasswordUsecase(this.authRepo);
+  SignInWithEmailAndPasswordUsecase(this.authRepository);
 
   @override
-  Future<Either<Failure,UserEntity?>> call(SignInParams signInParams) {
-    return authRepo.signInWithEmailAndPassoword(
+  Future<Either<Failure, UserEntity?>> call(SignInParams signInParams) {
+    print('in usecase');
+    return authRepository.signInWithEmailAndPassoword(
         signInParams.email, signInParams.password);
   }
 }

@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:injectable/injectable.dart';
+import 'package:monkey_talk/core/exceptions/exceptions.dart';
 import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/logger/applogger.dart';
@@ -10,61 +13,67 @@ import '../datasources/auth_remote_data_source.dart';
 @LazySingleton(as: AuthRepository)
 class AuthRepoImpl implements AuthRepository {
   AuthRepoImpl({
-    required this.remoteDS,
+    required this.authRemoteDataSource,
     required this.appLogger,
-    required this.firebaseAuth,
   });
 
-  final AuthRemoteDataSource remoteDS;
+  final AuthRemoteDataSource authRemoteDataSource;
   final AppLogger appLogger;
-  final FirebaseAuth firebaseAuth;
 
-  UserEntity? userFromFirebase(User? user) => user == null
-      ? null
-      : UserEntity(
-          uid: user.uid, email: user.email, firstName: user.displayName);
-
-  // @override
-  // Future< UserModel> signInWithEmailAndPassoword(
-  //     {required String email, required String password}) async {
-  //   return await remoteDS.signInWithUsernameAndPassword(email, password);
-  // }
   @override
-  Future<Either<Failure, UserEntity?>> signInWithEmailAndPassoword(
+  Future<Either<Failure, UserEntity>> signInWithEmailAndPassoword(
       String email, String password) async {
-    final userCred = await firebaseAuth.signInWithEmailAndPassword(
-      email: email,
-      password: password,
-    );
-    // return userCred;
-    return null;
+    try {
+      UserEntity? user = await authRemoteDataSource
+          .signInWithUsernameAndPassword(email, password);
+      return Right<Failure, UserEntity>(user!);
+    } on SocketException {
+      return const Left<Failure, UserEntity>(NoInternetConnectionFailure());
+    } on LogInWithEmailAndPasswordInvalidEmailException {
+      return Left<Failure, UserEntity>(
+          LogInWithEmailAndPasswordInvalidEmailFailure());
+    } on LogInWithEmailAndPasswordUserDisabledException {
+      return Left<Failure, UserEntity>(
+          LogInWithEmailAndPasswordUserDisabledFailure());
+    } on LogInWithEmailAndPasswordUserNotFoundException {
+      return Left<Failure, UserEntity>(
+          LogInWithEmailAndPasswordUserNotFoundFailure());
+    } on LogInWithEmailAndPasswordWrongPasswordException {
+      return Left<Failure, UserEntity>(
+          LogInWithEmailAndPasswordWrongPasswordFailure());
+    }
   }
 
-  // @override
-  // UserEntity? currentUser() {
-  //   return userFromFirebase(firebaseAuth.currentUser);
-  // }
+//  @override
+//   Future<Either<Failure, void>> signOut() {
+//    try{
+//     authRemoteDataSource.signOut();
+//    }on SocketException{
+//      return const Left<Failure, void>(NoInternetConnectionFailure());
+//    }
+//   }
 
   @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
-    return await remoteDS.signInWithGoogle();
+    return await authRemoteDataSource.signInWithGoogle();
   }
 
   @override
   Future<Either<Failure, UserCredential>> signInWithApple() async {
-    return await remoteDS.signInWithApple();
+    return await authRemoteDataSource.signInWithApple();
   }
 
   @override
   Future<Either<Failure, void>> forgotPassword({
     required String email,
   }) async {
-    return await remoteDS.forgotPassword(email);
+    return await authRemoteDataSource.forgotPassword(email);
   }
 
   @override
   Future<Either<Failure, UserCredential>> registerWithEmailAndPassword(
       {required String email, required String password}) async {
-    return await remoteDS.registerWithEmailAndPassword(email, password);
+    return await authRemoteDataSource.registerWithEmailAndPassword(
+        email, password);
   }
 }

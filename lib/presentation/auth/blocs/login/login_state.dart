@@ -1,7 +1,3 @@
-import 'package:equatable/equatable.dart';
-import 'package:monkey_talk/core/utils.dart/validationModels/email_model.dart';
-import 'package:monkey_talk/core/utils.dart/validationModels/password.dart';
-
 part of 'login_cubit.dart';
 
 // @freezed
@@ -10,31 +6,31 @@ final class LoginState extends Equatable {
     this.email = const Email.pure(),
     this.password = const Password.pure(),
     this.status = FormzSubmissionStatus.initial,
-     this.isValid = false,
-    this.errorMessage,
+    this.isValid = false,
+    this.failure,
   });
   final Email email;
   final Password password;
   final FormzSubmissionStatus status;
-   final bool isValid;
-  final String? errorMessage;
+  final bool isValid;
+  final Failure? failure;
 
   @override
-  List<Object?> get props => [email, password,status,isValid, errorMessage];
+  List<Object?> get props => [email, password, status, isValid, failure];
 
- LoginState copyWith({
+  LoginState copyWith({
     Email? email,
     Password? password,
     FormzSubmissionStatus? status,
     bool? isValid,
-    String? errorMessage,
+    Failure? failure,
   }) {
     return LoginState(
       email: email ?? this.email,
       password: password ?? this.password,
       status: status ?? this.status,
       isValid: isValid ?? this.isValid,
-      errorMessage: errorMessage ?? this.errorMessage,
+      failure: failure ?? this.failure,
     );
   }
 }

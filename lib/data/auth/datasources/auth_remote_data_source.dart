@@ -1,18 +1,25 @@
+import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:injectable/injectable.dart';
+import 'package:monkey_talk/core/exceptions/exception_codes.dart';
+import 'package:monkey_talk/core/exceptions/exceptions.dart';
+import 'package:monkey_talk/domain/auth/entities/user_entity.dart';
 import 'package:monkey_talk/main.dart';
 import '../../../core/error/error_mappers.dart';
 import '../../../core/error/failures.dart';
 import '../../../core/logger/applogger.dart';
-import '../models/user_model.dart';
 
 abstract class AuthRemoteDataSource {
-  // Future<UserModel?> signInWithUsernameAndPassword(
-  //   String email,
-  //   String password,
-  // );
+  UserEntity? currentUser();
+
+  Future<UserEntity?> signInWithUsernameAndPassword(
+    String email,
+    String password,
+  );
+
+  // Future<void> signOut();
 
   Future<Either<Failure, UserCredential>> signInWithGoogle();
 
@@ -30,33 +37,69 @@ abstract class AuthRemoteDataSource {
 
 @LazySingleton(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
-  final FirebaseAuth _firebaseAuth;
+  final FirebaseAuth firebaseAuth;
   final AppLogger _appLogger;
 
   AuthRemoteDataSourceImpl(
-    this._firebaseAuth,
+    this.firebaseAuth,
     this._appLogger,
   );
 
-  // @override
-  // Future<UserModel> signInWithUsernameAndPassword(
-  //   String email,
-  //   String password,
-  // ) async {
-  //   try {
-  //     final userCred = await _firebaseAuth.signInWithEmailAndPassword(
-  //       email: email,
-  //       password: password,
-  //     );
-  //     _appLogger.i('AuthRemoteDS signin with $email success');
-  //     return Right(userCred);
-  //   } on FirebaseAuthException catch (e) {
-  //     _appLogger.e('AuthRemoteDS signin with $email failed', error: e);
-  //     return Left(mapFirebaseAuthExceptionToFailure(e));
-  //   }
-  // }
+  UserEntity? userFromFirebase(User? user) => user == null
+      ? null
+      : UserEntity(
+          uid: user.uid,
+          displayName: user.displayName,
+          email: user.email,
+        );
 
- 
+  @override
+  UserEntity? currentUser() {
+    return userFromFirebase(firebaseAuth.currentUser);
+  }
+
+  @override
+  Future<UserEntity?> signInWithUsernameAndPassword(
+    String email,
+    String password,
+  ) async {
+    try {
+      final UserCredential userCred =
+          await firebaseAuth.signInWithEmailAndPassword(
+        email: email,
+        password: password,
+      );
+
+      _appLogger.i('AuthRemoteDS signin with $email success');
+      return userFromFirebase(userCred.user);
+    } on SocketException catch (_) {
+      throw NoInternetConnectionException();
+    } on FirebaseAuthException catch (e) {
+    
+      if (e.code == ExceptionCodes.invalidEmail) {
+        throw LogInWithEmailAndPasswordInvalidEmailException();
+      } else if (e.code == ExceptionCodes.userDisabled) {
+        throw LogInWithEmailAndPasswordUserDisabledException();
+      } else if (e.code == ExceptionCodes.userNotFound) {
+        throw LogInWithEmailAndPasswordUserNotFoundException();
+      } else if (e.code == ExceptionCodes.wrongPassword) {
+        throw LogInWithEmailAndPasswordWrongPasswordException();
+      }
+    } catch (_) {
+      throw const LogInWithEmailAndPasswordException();
+    }
+    return null;
+  }
+
+  // @override
+  // Future<Either<Failure, void>> signOut() async {
+  //   try {
+  //     await firebaseAuth.signOut();
+  //   } on SocketException catch (_) {
+  //     throw NoInternetConnectionException();
+  //   }
+
+  // }
 
   @override
   Future<Either<Failure, UserCredential>> signInWithGoogle() async {
@@ -99,7 +142,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   ) async {
     try {
       print("entered in creation of user : ");
-      final userCred = await _firebaseAuth.createUserWithEmailAndPassword(
+      final userCred = await firebaseAuth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
@@ -114,7 +157,7 @@ class AuthRemoteDataSourceImpl implements AuthRemoteDataSource {
   @override
   Future<Either<Failure, void>> forgotPassword(String email) async {
     try {
-      await _firebaseAuth.sendPasswordResetEmail(email: email);
+      await firebaseAuth.sendPasswordResetEmail(email: email);
       _appLogger.i('AuthRemoteDS signin with $email success');
       return const Right(null);
     } on FirebaseAuthException catch (e) {
