@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 #Mon Oct 16 19:25:51 IST 2023
+=======
+#Wed Oct 11 15:37:04 IST 2023
+>>>>>>> origin/navigation
 path.4=10/classes.dex
 path.3=1/classes.dex
 path.2=0/classes.dex

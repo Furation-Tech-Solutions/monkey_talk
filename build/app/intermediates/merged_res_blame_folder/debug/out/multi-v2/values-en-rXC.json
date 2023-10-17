@@ -1,7 +1,11 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "com.example.monkey_talk.app-mergeDebugResources-14:/values-en-rXC/values-en-rXC.xml",
+=======
+            "outputFile": "com.example.monkey_talk.app-mergeDebugResources-15:/values-en-rXC/values-en-rXC.xml",
+>>>>>>> origin/navigation
             "map": [
                 {
                     "source": "/Users/user/.gradle/caches/transforms-3/5d8813ca6e077bb0acb410c5d16a5490/transformed/browser-1.5.0/res/values-en-rXC/values-en-rXC.xml",
@@ -14,7 +18,11 @@
                     }
                 },
                 {
+<<<<<<< HEAD
                     "source": "/Users/user/.gradle/caches/transforms-3/cf72013d765e0f69e97cd3b9cbb09800/transformed/core-1.6.0/res/values-en-rXC/values-en-rXC.xml",
+=======
+                    "source": "/Users/user/.gradle/caches/transforms-3/5d74e95fb0075f60337058ab4b4b1813/transformed/core-1.9.0/res/values-en-rXC/values-en-rXC.xml",
+>>>>>>> origin/navigation
                     "from": {
                         "startLines": "2",
                         "startColumns": "4",

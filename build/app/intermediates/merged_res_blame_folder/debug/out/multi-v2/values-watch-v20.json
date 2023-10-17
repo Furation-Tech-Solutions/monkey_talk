@@ -1,7 +1,11 @@
 {
     "logs": [
         {
+<<<<<<< HEAD
             "outputFile": "com.example.monkey_talk.app-mergeDebugResources-14:/values-watch-v20/values-watch-v20.xml",
+=======
+            "outputFile": "com.example.monkey_talk.app-mergeDebugResources-15:/values-watch-v20/values-watch-v20.xml",
+>>>>>>> origin/navigation
             "map": [
                 {
                     "source": "/Users/user/.gradle/caches/transforms-3/706825b76a3839688cde8989ecd39986/transformed/jetified-play-services-auth-20.7.0/res/values-watch-v20/values.xml",

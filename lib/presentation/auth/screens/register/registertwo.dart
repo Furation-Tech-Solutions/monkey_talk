@@ -72,7 +72,7 @@ class registerProfilePhotoScreen extends StatelessWidget {
       children: [
         Text(
           "Set your profile photo",
-          style: $styles.text.poppins20_500black,
+          style: $styles.text.poppins20_500tertiary900,
         ),
         SizedBoxHeight10,
         Text("Capture a photo in ideal daylight for clarity ",

@@ -20,7 +20,7 @@ class RegisterProfileScreenWithPhoto extends StatelessWidget {
       children: [
         Text(
           "Profile photo successfully set",
-          style: $styles.text.poppins20_500black,
+          style: $styles.text.poppins20_500tertiary900,
         ),
         SizedBoxHeight10,
         SizedBoxHeight50,
@@ -28,7 +28,7 @@ class RegisterProfileScreenWithPhoto extends StatelessWidget {
           child: CircleAvatar(
               radius: 52,
               backgroundColor: $styles.colors.tertiary200,
-              child: SvgPicture.asset('assets/images/personImage.svg')),
+              child: SvgPicture.asset('assets/icons/personImage.svg')),
         ),
         SizedBoxHeight50,
         CustomButton(
